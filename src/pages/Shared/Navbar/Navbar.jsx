@@ -69,8 +69,8 @@ const Navbar = ({ user }) => {
         </div>
         <div className="navbar-end">
           {!user?.email && (
-            <Link className="btn btn-success" to="/login">
-              Login
+            <Link className="btn btn-outline border-[#90c641e6]" to="/login">
+              <span className="text-[#90c641e6]">Login</span>
             </Link>
           )}
           {user?.email && (
@@ -86,7 +86,9 @@ const Navbar = ({ user }) => {
               >
                 <li>
                   {/* onClick={handleLogOut} */}
-                  <button className="btn btn-warning">Logout</button>
+                  <button className="btn btn-outline bg-[#90c641e6]">
+                    Logout
+                  </button>
                 </li>
               </ul>
             </div>

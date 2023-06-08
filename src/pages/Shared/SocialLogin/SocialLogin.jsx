@@ -2,9 +2,15 @@ import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import googleImg from "../../../assets/social/google.png";
 import { toast } from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -26,6 +32,7 @@ const SocialLogin = () => {
           .then((res) => res.json())
           .then(() => {
             toast.success("User created successfully");
+            navigate(from, { replace: true });
           });
       })
       .catch((error) => {

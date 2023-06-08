@@ -69,8 +69,11 @@ const Navbar = ({ user }) => {
         </div>
         <div className="navbar-end">
           {!user?.email && (
-            <Link className="btn btn-outline border-[#90c641e6]" to="/login">
-              <span className="text-[#90c641e6]">Login</span>
+            <Link
+              className="btn btn-outline border-[#90c641e6] hover:btn-info"
+              to="/login"
+            >
+              <span className="text-[#90c641e6] hover:text-white">Login</span>
             </Link>
           )}
           {user?.email && (

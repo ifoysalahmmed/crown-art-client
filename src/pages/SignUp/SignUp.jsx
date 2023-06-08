@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import signUpImg from "../../assets/signup/signup.png";
 import useAuth from "../../hooks/useAuth";
@@ -8,6 +8,11 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -45,6 +50,7 @@ const SignUp = () => {
                 if (data.insertedId) {
                   reset();
                   toast.success("User created successfully");
+                  navigate(from, { replace: true });
                 }
               });
           })

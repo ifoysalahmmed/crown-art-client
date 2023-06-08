@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import loginImg from "../../assets/login/login.png";
@@ -9,6 +9,11 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -22,10 +27,9 @@ const Login = () => {
     const { email, password } = data || {};
 
     signIn(email, password)
-      .then((result) => {
-        const loggedUser = result.user;
+      .then(() => {
         toast.success("Login Successful!");
-        console.log(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         toast.error(error.message);

@@ -1,15 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
 
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
     logOut()
       .then(() => {
         toast.success("Logout successfully");
+        navigate("/");
       })
       .catch((error) => {
         toast.error(error.message);

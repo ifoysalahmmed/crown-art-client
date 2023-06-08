@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import loginImg from "../../assets/login/login.png";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useAuth();
@@ -108,10 +110,21 @@ const Login = () => {
                 <input
                   type="submit"
                   value="Login"
-                  className="btn bg-[#90c641e6] hover:btn-info text-white"
+                  className="btn bg-[#90c641e6] hover:btn-info hover:text-white text-white"
                 />
               </div>
             </form>
+            <p>
+              <small>
+                New Here?{" "}
+                <Link to="/sign-up">
+                  <span className="text-warning font-semibold">
+                    Create an account
+                  </span>
+                </Link>
+              </small>
+            </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

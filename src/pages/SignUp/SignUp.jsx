@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import signUpImg from "../../assets/signup/signup.png";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -10,6 +12,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -30,7 +33,20 @@ const SignUp = () => {
         updateUserProfile(name, photo)
           .then(() => {
             const saveUser = { name, email };
-            console.log(saveUser);
+            fetch(`${import.meta.env.VITE_API_URL}/users`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  toast.success("User created successfully");
+                }
+              });
           })
           .catch((error) => {
             toast.error(error.message);
@@ -49,6 +65,9 @@ const SignUp = () => {
         </div>
         <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-200">
           <div className="card-body">
+            <h1 className="text-3xl font-bold text-center text-[#90c641e6]">
+              Sign Up now!
+            </h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control">
                 <label className="label">
@@ -172,10 +191,21 @@ const SignUp = () => {
                 <input
                   type="submit"
                   value="Sign Up"
-                  className="btn bg-[#90c641e6] hover:btn-info text-white"
+                  className="btn bg-[#90c641e6] hover:btn-info hover:text-white text-white"
                 />
               </div>
             </form>
+            <p>
+              <small>
+                Already have an account?{" "}
+                <Link to="/login">
+                  <span className="text-warning font-semibold">
+                    Go to Login
+                  </span>
+                </Link>
+              </small>
+            </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

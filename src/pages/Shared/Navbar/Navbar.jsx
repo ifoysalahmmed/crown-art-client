@@ -106,7 +106,7 @@ const Navbar = () => {
               >
                 <button
                   onClick={handleLogOut}
-                  className="btn btn-outline bg-[#90c641e6] border-0 text-white"
+                  className="btn btn-outline bg-[#90c641e6] border-0 text-white hover:btn-warning"
                 >
                   Logout
                 </button>

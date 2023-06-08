@@ -41,7 +41,6 @@ const Users = () => {
     <div className="w-full px-6">
       <div className="overflow-x-auto">
         <table className="table-md w-full text-center">
-          {/* head */}
           <thead className="bg-[#90c641e6]">
             <tr className="text-white uppercase">
               <th></th>

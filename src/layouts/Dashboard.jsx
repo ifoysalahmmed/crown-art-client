@@ -28,11 +28,11 @@ const Dashboard = () => {
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
             <ul className="menu p-4 w-60 h-full bg-[#90c641e6] text-base-content">
-              {isAdmin && (
+              {isAdmin ? (
                 <>
                   <li>
                     <Link
-                      to="/dashboard/users"
+                      to="/dashboard/manage-classes"
                       className="text-white font-medium"
                     >
                       <FaUsers></FaUsers> Manage Classes
@@ -40,19 +40,21 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <Link
-                      to="/dashboard/users"
+                      to="/dashboard/manage-users"
                       className="text-white font-medium"
                     >
                       <FaUsers></FaUsers> Manage Users
                     </Link>
                   </li>
                 </>
+              ) : (
+                ""
               )}
-              {isInstructor && (
+              {isInstructor ? (
                 <>
                   <li>
                     <Link
-                      to="/dashboard/users"
+                      to="/dashboard/add-class"
                       className="text-white font-medium"
                     >
                       <FaUsers></FaUsers> Add a Class
@@ -60,19 +62,21 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <Link
-                      to="/dashboard/users"
+                      to="/dashboard/my-classes"
                       className="text-white font-medium"
                     >
                       <FaUsers></FaUsers> My Classes
                     </Link>
                   </li>
                 </>
+              ) : (
+                ""
               )}
               {!isAdmin && !isInstructor && (
                 <>
                   <li>
                     <Link
-                      to="/dashboard/users"
+                      to="/dashboard/selected-classes"
                       className="text-white font-medium"
                     >
                       <FaUsers></FaUsers> My Selected Classes
@@ -80,7 +84,7 @@ const Dashboard = () => {
                   </li>
                   <li>
                     <Link
-                      to="/dashboard/users"
+                      to="/dashboard/enrolled-classes"
                       className="text-white font-medium"
                     >
                       <FaUsers></FaUsers> My Enrolled Classes

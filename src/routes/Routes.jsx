@@ -4,11 +4,14 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Classes from "../pages/Classes/Classes";
-import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layouts/Dashboard";
-import Users from "../pages/Dashboard/Users/Users";
 import AdminRoute from "./AdminRoute";
+import Users from "../pages/Dashboard/Users/Users";
+import InstructorRoute from "./InstructorRoute";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
+import UpdateClass from "../pages/Dashboard/UpdateClass/UpdateClass";
 
 export const router = createBrowserRouter([
   {
@@ -22,10 +25,6 @@ export const router = createBrowserRouter([
       {
         path: "/classes",
         element: <Classes></Classes>,
-      },
-      {
-        path: "/add-class",
-        element: <AddClass></AddClass>,
       },
       {
         path: "/login",
@@ -60,6 +59,40 @@ export const router = createBrowserRouter([
             <h2>manage classes is coming</h2>
           </AdminRoute>
         ),
+      },
+      {
+        path: "/dashboard/add-class",
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "/dashboard/my-classes",
+        element: (
+          <InstructorRoute>
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "/dashboard/update-class/:id",
+        element: (
+          <InstructorRoute>
+            <UpdateClass></UpdateClass>
+          </InstructorRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/classes/${params.id}`),
+      },
+      {
+        path: "/dashboard/selected-classes",
+        element: <h2>My Selected Classes is coming</h2>,
+      },
+      {
+        path: "/dashboard/enrolled-classes",
+        element: <h2>My Enrolled Classes is coming</h2>,
       },
     ],
   },

@@ -40,7 +40,9 @@ const MyClasses = () => {
                     </button>
                   </Link>
                 </td>
-                <td>{course.status}</td>
+                <td>
+                  <div className="capitalize font-medium">{course.status}</div>
+                </td>
               </tr>
             ))}
             {/* row 1 */}

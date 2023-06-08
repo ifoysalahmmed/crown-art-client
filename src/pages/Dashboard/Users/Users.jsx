@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { toast } from "react-hot-toast";
-import { GrUserAdmin } from "react-icons/gr";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const Users = () => {
-  const [users, setUsers] = useState([]);
+  const [axiosSecure] = useAxiosSecure();
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/users`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data);
-      });
-  }, []);
+  const { data: users = [], refetch } = useQuery(["users"], async () => {
+    const res = await axiosSecure.get("/users");
+    return res.data;
+  });
 
   const handleMakeInstructor = (user) => {
     fetch(`${import.meta.env.VITE_API_URL}/users/instructor/${user?._id}`, {
@@ -20,6 +18,7 @@ const Users = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
+          refetch();
           toast.success(`${user?.name} is INSTRUCTOR Now!!!`);
         }
       });
@@ -32,6 +31,7 @@ const Users = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
+          refetch();
           toast.success(`${user?.name} is ADMIN Now!!!`);
         }
       });

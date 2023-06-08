@@ -1,7 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import { toast } from "react-hot-toast";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
+  const { user, logOut } = useAuth();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logout successfully");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
   const navOptions = (
     <>
       <li className="font-semibold">
@@ -45,7 +59,7 @@ const Navbar = ({ user }) => {
               {user?.email && (
                 <>
                   <li className="font-semibold">
-                    <Link to="/">Classes</Link>
+                    <Link to="/">Dashboard</Link>
                   </li>
                 </>
               )}
@@ -61,7 +75,7 @@ const Navbar = ({ user }) => {
             {user?.email && (
               <>
                 <li className="font-semibold">
-                  <Link to="/">Classes</Link>
+                  <Link to="/">Dashboard</Link>
                 </li>
               </>
             )}
@@ -79,20 +93,23 @@ const Navbar = ({ user }) => {
           {user?.email && (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
+                <div className="w-24 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
                   <img title={user.displayName} src={user.photoURL} alt="" />
                 </div>
+                {/* <div className="w-10 rounded-full">
+                  <img title={user.displayName} src={user.photoURL} alt="" />
+                </div> */}
               </label>
               <ul
                 tabIndex={0}
                 className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
               >
-                <li>
-                  {/* onClick={handleLogOut} */}
-                  <button className="btn btn-outline bg-[#90c641e6]">
-                    Logout
-                  </button>
-                </li>
+                <button
+                  onClick={handleLogOut}
+                  className="btn btn-outline bg-[#90c641e6] border-0 text-white"
+                >
+                  Logout
+                </button>
               </ul>
             </div>
           )}

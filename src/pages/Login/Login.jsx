@@ -2,16 +2,33 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import loginImg from "../../assets/login/login.png";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
+  const { signIn } = useAuth();
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
 
-  const [passwordVisible, setPasswordVisible] = useState(false);
+  const onSubmit = (data) => {
+    const { email, password } = data || {};
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        toast.success("Login Successful!");
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);

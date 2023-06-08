@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import loginImg from "../../assets/login/login.png";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth/useAuth";
 import { toast } from "react-hot-toast";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 

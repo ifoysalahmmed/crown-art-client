@@ -1,5 +1,5 @@
 import React from "react";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth/useAuth";
 import googleImg from "../../../assets/social/google.png";
 import { toast } from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";

@@ -5,9 +5,10 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Classes from "../pages/Classes/Classes";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
-import Dashboard from "../layouts/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../layouts/Dashboard";
 import Users from "../pages/Dashboard/Users/Users";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -45,8 +46,20 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/dashboard/users",
-        element: <Users></Users>,
+        path: "/dashboard/manage-users",
+        element: (
+          <AdminRoute>
+            <Users></Users>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/manage-classes",
+        element: (
+          <AdminRoute>
+            <h2>manage classes is coming</h2>
+          </AdminRoute>
+        ),
       },
     ],
   },

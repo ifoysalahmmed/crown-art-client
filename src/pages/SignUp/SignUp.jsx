@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import signUpImg from "../../assets/signup/signup.png";
+import useAuth from "../../hooks/useAuth";
+import { toast } from "react-hot-toast";
 
 const SignUp = () => {
+  const { createUser, updateUserProfile } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -20,6 +24,21 @@ const SignUp = () => {
     }
 
     setPassError(false);
+
+    createUser(email, password)
+      .then(() => {
+        updateUserProfile(name, photo)
+          .then(() => {
+            const saveUser = { name, email };
+            console.log(saveUser);
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (

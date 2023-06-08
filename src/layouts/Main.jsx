@@ -1,14 +1,17 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar/Navbar";
+import Container from "../pages/Shared/Container/Container";
 
 const Main = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="pt-[68px]">
-        <Outlet></Outlet>
-      </div>
+      <Container>
+        <div className="pt-[68px]">
+          <Outlet></Outlet>
+        </div>
+      </Container>
     </>
   );
 };

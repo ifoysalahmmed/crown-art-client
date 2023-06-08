@@ -84,10 +84,10 @@ const Navbar = () => {
         <div className="navbar-end">
           {!user?.email && (
             <Link
-              className="btn btn-outline border-[#90c641e6] hover:btn-info"
+              className="btn btn-outline border-[#90c641e6] hover:btn-info text-[#90c641e6]"
               to="/login"
             >
-              <span className="text-[#90c641e6] hover:text-white">Login</span>
+              <span className="">Login</span>
             </Link>
           )}
           {user?.email && (

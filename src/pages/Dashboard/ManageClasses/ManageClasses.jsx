@@ -1,6 +1,7 @@
 import React from "react";
 import useAdminClasses from "../../../hooks/useAdminClasses";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const ManageClasses = () => {
   const [classes, refetch] = useAdminClasses();
@@ -74,17 +75,23 @@ const ManageClasses = () => {
                   <div className="space-y-2">
                     <button
                       onClick={() => handleApprove(course)}
-                      className="btn btn-success btn-xs"
+                      className="btn btn-success btn-xs text-white"
                     >
                       approve
                     </button>
                     <button
                       onClick={() => handleDeny(course)}
-                      className="btn btn-warning btn-xs"
+                      className="btn btn-warning btn-xs text-white"
                     >
                       deny
                     </button>
-                    <button className="btn btn-info btn-xs">feedback</button>
+                    <div>
+                      <Link to={`/dashboard/feedback/${course._id}`}>
+                        <button className="btn btn-info btn-xs text-white">
+                          feedback
+                        </button>
+                      </Link>
+                    </div>
                   </div>
                 </th>
               </tr>

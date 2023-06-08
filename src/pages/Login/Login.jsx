@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen bg-base-100">
-      <div className="hero-content flex-col md:flex-row justify-center items-center">
+      <div className="hero-content flex-col md:flex-row-reverse">
         <div className="text-center md:w-1/2">
           <img src={loginImg} alt="login image" className="w-2/3 m-auto" />
         </div>

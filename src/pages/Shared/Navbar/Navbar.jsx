@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth/useAuth";
+import Avatar from "./Avatar";
 import { toast } from "react-hot-toast";
 
 const Navbar = () => {
@@ -96,12 +97,7 @@ const Navbar = () => {
           {user?.email && (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-24 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
-                  <img title={user.displayName} src={user.photoURL} alt="" />
-                </div>
-                {/* <div className="w-10 rounded-full">
-                  <img title={user.displayName} src={user.photoURL} alt="" />
-                </div> */}
+                <Avatar></Avatar>
               </label>
               <ul
                 tabIndex={0}

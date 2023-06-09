@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PopularClassCard from "./PopularClassCard";
 
 const PopularClasses = () => {
   const [popularClasses, setPopularClasses] = useState([]);
@@ -12,10 +13,13 @@ const PopularClasses = () => {
   }, []);
 
   return (
-    <div>
-      <div>
+    <div className="mt-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {popularClasses.map((popularClass) => (
-          <p key={popularClass._id}>{popularClass.name}</p>
+          <PopularClassCard
+            key={popularClass._id}
+            popularClass={popularClass}
+          ></PopularClassCard>
         ))}
       </div>
     </div>

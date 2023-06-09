@@ -12,12 +12,10 @@ const Users = () => {
   });
 
   const handleMakeInstructor = (user) => {
-    fetch(`${import.meta.env.VITE_API_URL}/users/instructor/${user?._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
+    axiosSecure
+      .patch(`${import.meta.env.VITE_API_URL}/users/instructor/${user?._id}`)
       .then((data) => {
-        if (data.modifiedCount > 0) {
+        if (data.data.modifiedCount > 0) {
           refetch();
           toast.success(`${user?.name} is INSTRUCTOR Now!!!`);
         }
@@ -25,12 +23,10 @@ const Users = () => {
   };
 
   const handleMakeAdmin = (user) => {
-    fetch(`${import.meta.env.VITE_API_URL}/users/admin/${user?._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
+    axiosSecure
+      .patch(`${import.meta.env.VITE_API_URL}/users/admin/${user?._id}`)
       .then((data) => {
-        if (data.modifiedCount > 0) {
+        if (data.data.modifiedCount > 0) {
           refetch();
           toast.success(`${user?.name} is ADMIN Now!!!`);
         }

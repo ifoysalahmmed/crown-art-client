@@ -14,6 +14,7 @@ import InstructorRoute from "./InstructorRoute";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import UpdateClass from "../pages/Dashboard/UpdateClass/UpdateClass";
+import MySelectedClasses from "../pages/Dashboard/MySelectedClasses/MySelectedClasses";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
@@ -101,7 +102,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/selected-classes",
-        element: <h2>My Selected Classes is coming</h2>,
+        element: <MySelectedClasses></MySelectedClasses>,
       },
       {
         path: "/dashboard/enrolled-classes",

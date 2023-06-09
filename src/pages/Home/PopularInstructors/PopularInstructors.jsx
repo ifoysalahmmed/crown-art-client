@@ -20,11 +20,18 @@ const PopularInstructors = () => {
         {popularInstructors.map((popularInstructor) => (
           <div
             key={popularInstructor._id}
-            className="card w-full bg-[#90c641e6] shadow-xl text-white"
+            className="card w-full h-96 bg-[#90c641e6] text-white shadow-xl group"
           >
+            <figure className="h-full">
+              <img
+                src={popularInstructor?.image}
+                alt="Class Image"
+                className="object-cover w-full h-full group-hover:scale-110 transition"
+              />
+            </figure>
             <div className="card-body">
               <h2 className="card-title">{popularInstructor?.name}</h2>
-              <p>{popularInstructor?.email}</p>
+              <p className="font-medium">Email: {popularInstructor?.email}</p>
             </div>
           </div>
         ))}

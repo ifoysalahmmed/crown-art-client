@@ -9,9 +9,9 @@ const MyClasses = () => {
   return (
     <div className="w-full px-6">
       <div className="overflow-x-auto">
-        <table className="table-md w-full text-center">
+        <table className="table w-full text-center">
           <thead className="bg-[#90c641e6]">
-            <tr className="text-white uppercase">
+            <tr className="text-white capitalize">
               <th></th>
               <th>Name</th>
               <th>Price</th>

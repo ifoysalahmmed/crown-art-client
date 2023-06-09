@@ -37,7 +37,7 @@ const SignUp = () => {
       .then(() => {
         updateUserProfile(name, photo)
           .then(() => {
-            const saveUser = { name, email };
+            const saveUser = { name, email, photo };
             fetch(`${import.meta.env.VITE_API_URL}/users`, {
               method: "POST",
               headers: {

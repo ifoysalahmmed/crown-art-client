@@ -14,11 +14,13 @@ import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import UpdateClass from "../pages/Dashboard/UpdateClass/UpdateClass";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
 import FeedbackForm from "../pages/Dashboard/ManageClasses/FeedbackForm";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -45,6 +47,7 @@ export const router = createBrowserRouter([
         <Dashboard></Dashboard>
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard/manage-users",

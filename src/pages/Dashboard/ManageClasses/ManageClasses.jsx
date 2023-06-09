@@ -73,25 +73,45 @@ const ManageClasses = () => {
                 </td>
                 <th>
                   <div className="space-y-2">
-                    <button
-                      onClick={() => handleApprove(course)}
-                      className="btn btn-success btn-xs text-white"
-                    >
-                      approve
-                    </button>
-                    <button
-                      onClick={() => handleDeny(course)}
-                      className="btn btn-warning btn-xs text-white"
-                    >
-                      deny
-                    </button>
-                    <div>
-                      <Link to={`/dashboard/feedback/${course._id}`}>
-                        <button className="btn btn-info btn-xs text-white">
-                          feedback
+                    {course?.status === "approved" ? (
+                      <div>
+                        <Link to={`/dashboard/feedback/${course._id}`}>
+                          <button className="btn btn-info btn-xs text-white">
+                            feedback
+                          </button>
+                        </Link>
+                      </div>
+                    ) : course?.status === "denied" ? (
+                      <div>
+                        <Link to={`/dashboard/feedback/${course._id}`}>
+                          <button className="btn btn-info btn-xs text-white">
+                            feedback
+                          </button>
+                        </Link>
+                      </div>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => handleApprove(course)}
+                          className="btn btn-success btn-xs text-white"
+                        >
+                          approve
                         </button>
-                      </Link>
-                    </div>
+                        <button
+                          onClick={() => handleDeny(course)}
+                          className="btn btn-warning btn-xs text-white"
+                        >
+                          deny
+                        </button>
+                        <div>
+                          <Link to={`/dashboard/feedback/${course._id}`}>
+                            <button className="btn btn-info btn-xs text-white">
+                              feedback
+                            </button>
+                          </Link>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </th>
               </tr>

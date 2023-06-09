@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth/useAuth";
 import useAdmin from "../hooks/useAdmin";
+import Loader from "../pages/Shared/Loader/Loader";
 
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -11,11 +12,7 @@ const AdminRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading || isAdminLoading) {
-    return (
-      <div className="text-center">
-        <progress className="progress w-56"></progress>
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   if (user && isAdmin) {

@@ -20,6 +20,7 @@ const SocialLogin = () => {
         const saveUser = {
           name: loggedUser.displayName,
           email: loggedUser.email,
+          image: loggedUser.photoURL,
         };
 
         fetch(`${import.meta.env.VITE_API_URL}/users`, {

@@ -1,6 +1,7 @@
 import React from "react";
 import useAuth from "../hooks/useAuth/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
+import Loader from "../pages/Shared/Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -8,11 +9,7 @@ const PrivateRoute = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    return (
-      <div className="text-center">
-        <progress className="progress w-56"></progress>
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   if (user) {

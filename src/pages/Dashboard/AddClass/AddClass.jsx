@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth/useAuth";
 
-const img_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
+const img_hosting_token = import.meta.env.VITE_IMGBB_KEY;
 
 const AddClass = () => {
   const { user } = useAuth();
@@ -76,7 +76,7 @@ const AddClass = () => {
               <input
                 type="file"
                 {...register("image", { required: true })}
-                className="file-input file-input-bordered file-input-success w-full"
+                className="file-input file-input-bordered file-input-ghost w-full"
               />
             </div>
 

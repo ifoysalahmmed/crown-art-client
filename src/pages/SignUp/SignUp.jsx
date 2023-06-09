@@ -6,6 +6,8 @@ import useAuth from "../../hooks/useAuth/useAuth";
 import { toast } from "react-hot-toast";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
+const img_hosting_token = import.meta.env.VITE_IMGBB_KEY;
+
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
 
@@ -23,8 +25,12 @@ const SignUp = () => {
 
   const [passError, setPassError] = useState(false);
 
+  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+
   const onSubmit = (data) => {
     const { name, email, password, confirmPassword, photo } = data || {};
+
+    console.log(photo);
 
     if (password !== confirmPassword) {
       setPassError(true);
@@ -33,33 +39,45 @@ const SignUp = () => {
 
     setPassError(false);
 
-    createUser(email, password)
-      .then(() => {
-        updateUserProfile(name, photo)
+    const formData = new FormData();
+    formData.append("image", photo[0]);
+
+    fetch(img_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageResponse) => {
+        const photoUrl = imageResponse.data.display_url;
+
+        createUser(email, password)
           .then(() => {
-            const saveUser = { name, email, photo };
-            fetch(`${import.meta.env.VITE_API_URL}/users`, {
-              method: "POST",
-              headers: {
-                "content-type": "application/json",
-              },
-              body: JSON.stringify(saveUser),
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                if (data.insertedId) {
-                  reset();
-                  toast.success("User created successfully");
-                  navigate(from, { replace: true });
-                }
+            updateUserProfile(name, photoUrl)
+              .then(() => {
+                const saveUser = { name, email, image: photoUrl };
+                fetch(`${import.meta.env.VITE_API_URL}/users`, {
+                  method: "POST",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify(saveUser),
+                })
+                  .then((res) => res.json())
+                  .then((data) => {
+                    if (data.insertedId) {
+                      reset();
+                      toast.success("User created successfully");
+                      navigate(from, { replace: true });
+                    }
+                  });
+              })
+              .catch((error) => {
+                toast.error(error.message);
               });
           })
           .catch((error) => {
             toast.error(error.message);
           });
-      })
-      .catch((error) => {
-        toast.error(error.message);
       });
   };
 
@@ -77,7 +95,7 @@ const SignUp = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Name</span>
+                  <span className="label-text font-medium">Name</span>
                 </label>
                 <input
                   type="text"
@@ -86,15 +104,13 @@ const SignUp = () => {
                   className="input input-bordered"
                 />
                 {errors.name && (
-                  <span className="text-red-600 px-4 py-2">
-                    Name is required
-                  </span>
+                  <span className="text-red-600 py-2">Name is required</span>
                 )}
               </div>
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text font-medium">Email</span>
                 </label>
                 <input
                   type="email"
@@ -103,15 +119,13 @@ const SignUp = () => {
                   className="input input-bordered"
                 />
                 {errors.email && (
-                  <span className="text-red-600 px-4 py-2">
-                    Email is required
-                  </span>
+                  <span className="text-red-600 py-2">Email is required</span>
                 )}
               </div>
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text font-medium">Password</span>
                 </label>
                 <input
                   type="password"
@@ -124,17 +138,17 @@ const SignUp = () => {
                   className="input input-bordered w-full"
                 />
                 {errors.password?.type === "required" && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password is required
                   </span>
                 )}
                 {errors.password?.type === "minLength" && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password must be 6 characters
                   </span>
                 )}
                 {errors.password?.type === "pattern" && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password must have one uppercase, one special character
                   </span>
                 )}
@@ -142,7 +156,9 @@ const SignUp = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Confirm Password</span>
+                  <span className="label-text font-medium">
+                    Confirm Password
+                  </span>
                 </label>
                 <input
                   type="password"
@@ -155,22 +171,22 @@ const SignUp = () => {
                   className="input input-bordered w-full"
                 />
                 {errors.confirmPassword?.type === "required" && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password is required
                   </span>
                 )}
                 {errors.confirmPassword?.type === "minLength" && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password must be 6 characters
                   </span>
                 )}
                 {errors.confirmPassword?.type === "pattern" && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password must have one uppercase, one special character
                   </span>
                 )}
                 {passError && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password doesn&apos;t match
                   </span>
                 )}
@@ -178,18 +194,16 @@ const SignUp = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Photo URL</span>
+                  <span className="label-text font-medium">Upload Photo</span>
                 </label>
                 <input
-                  type="url"
+                  type="file"
+                  accept="image/*"
                   {...register("photo", { required: true })}
-                  placeholder="Photo URL"
-                  className="input input-bordered"
+                  className="file-input file-input-bordered file-input-ghost w-full"
                 />
                 {errors.photo && (
-                  <span className="text-red-600 px-4 py-2">
-                    Photo URL is required
-                  </span>
+                  <span className="text-red-600 py-2">Photo is required</span>
                 )}
               </div>
 

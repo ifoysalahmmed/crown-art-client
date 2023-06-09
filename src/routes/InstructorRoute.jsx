@@ -2,17 +2,14 @@ import React from "react";
 import useAuth from "../hooks/useAuth/useAuth";
 import useInstructor from "../hooks/useInstructor";
 import { Navigate } from "react-router-dom";
+import Loader from "../pages/Shared/Loader/Loader";
 
 const InstructorRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const { isInstructor, isInstructorLoading } = useInstructor();
 
   if (loading || isInstructorLoading) {
-    return (
-      <div className="text-center">
-        <progress className="progress w-56"></progress>
-      </div>
-    );
+    return <Loader></Loader>;
   }
 
   if (user && isInstructor) {

@@ -18,7 +18,9 @@ const ErrorPage = () => {
           </p>
           <div className="text-center">
             <Link to="/">
-              <button className="btn btn-success text-white">Go Back to Home</button>
+              <button className="btn btn-success text-white">
+                Go Back to Home
+              </button>
             </Link>
           </div>
         </div>

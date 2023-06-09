@@ -63,11 +63,10 @@ const Login = () => {
                   className="input input-bordered w-full"
                 />
                 {errors.email && (
-                  <span className="text-red-600 px-4 py-2">
-                    Email is required
-                  </span>
+                  <span className="text-red-600 py-2">Email is required</span>
                 )}
               </div>
+
               <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text font-semibold">Password</span>
@@ -91,11 +90,12 @@ const Login = () => {
                   </button>
                 </div>
                 {errors.password?.type === "required" && (
-                  <span className="text-red-600 px-4 py-2">
+                  <span className="text-red-600 py-2">
                     Password is required
                   </span>
                 )}
               </div>
+
               <div className="form-control mt-6">
                 <input
                   type="submit"

@@ -8,12 +8,12 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layouts/Dashboard";
 import AdminRoute from "./AdminRoute";
 import Users from "../pages/Dashboard/Users/Users";
+import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import FeedbackForm from "../pages/Dashboard/ManageClasses/FeedbackForm";
 import InstructorRoute from "./InstructorRoute";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import UpdateClass from "../pages/Dashboard/UpdateClass/UpdateClass";
-import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
-import FeedbackForm from "../pages/Dashboard/ManageClasses/FeedbackForm";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([

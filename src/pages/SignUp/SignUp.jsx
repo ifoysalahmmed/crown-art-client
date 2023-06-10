@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import signUpImg from "../../assets/signup/signup.png";
 import useAuth from "../../hooks/useAuth/useAuth";
 import { toast } from "react-hot-toast";
@@ -15,6 +16,17 @@ const SignUp = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPassVisible, setConfirmPassVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const toggleConfirmPassVisibility = () => {
+    setConfirmPassVisible(!confirmPassVisible);
+  };
 
   const {
     register,
@@ -127,16 +139,28 @@ const SignUp = () => {
                 <label className="label">
                   <span className="label-text font-medium">Password</span>
                 </label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  {...register("password", {
-                    required: true,
-                    minLength: 6,
-                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
-                  })}
-                  className="input input-bordered w-full"
-                />
+                <div className="relative">
+                  <input
+                    type={passwordVisible ? "text" : "password"}
+                    placeholder="Password"
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
+                    })}
+                    className="input input-bordered w-full"
+                  />
+                  <label
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {passwordVisible ? (
+                      <RiEyeOffFill size={20}></RiEyeOffFill>
+                    ) : (
+                      <RiEyeFill size={20}></RiEyeFill>
+                    )}
+                  </label>
+                </div>
                 {errors.password?.type === "required" && (
                   <span className="text-red-600 py-2">
                     Password is required
@@ -160,31 +184,28 @@ const SignUp = () => {
                     Confirm Password
                   </span>
                 </label>
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  {...register("confirmPassword", {
-                    required: true,
-                    minLength: 6,
-                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
-                  })}
-                  className="input input-bordered w-full"
-                />
-                {errors.confirmPassword?.type === "required" && (
-                  <span className="text-red-600 py-2">
-                    Password is required
-                  </span>
-                )}
-                {errors.confirmPassword?.type === "minLength" && (
-                  <span className="text-red-600 py-2">
-                    Password must be 6 characters
-                  </span>
-                )}
-                {errors.confirmPassword?.type === "pattern" && (
-                  <span className="text-red-600 py-2">
-                    Password must have one uppercase, one special character
-                  </span>
-                )}
+                <div className="relative">
+                  <input
+                    type={confirmPassVisible ? "text" : "password"}
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword", {
+                      required: true,
+                      minLength: 6,
+                      pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
+                    })}
+                    className="input input-bordered w-full"
+                  />
+                  <label
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
+                    onClick={toggleConfirmPassVisibility}
+                  >
+                    {confirmPassVisible ? (
+                      <RiEyeOffFill size={20}></RiEyeOffFill>
+                    ) : (
+                      <RiEyeFill size={20}></RiEyeFill>
+                    )}
+                  </label>
+                </div>
                 {passError && (
                   <span className="text-red-600 py-2">
                     Password doesn&apos;t match

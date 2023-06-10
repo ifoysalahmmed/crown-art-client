@@ -17,6 +17,10 @@ const Login = () => {
 
   const [passwordVisible, setPasswordVisible] = useState(false);
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   const {
     register,
     handleSubmit,
@@ -34,10 +38,6 @@ const Login = () => {
       .catch((error) => {
         toast.error(error.message);
       });
-  };
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
   };
 
   return (
@@ -78,7 +78,7 @@ const Login = () => {
                     {...register("password", { required: true })}
                     className="input input-bordered w-full"
                   />
-                  <button
+                  <label
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
                     onClick={togglePasswordVisibility}
                   >
@@ -87,7 +87,7 @@ const Login = () => {
                     ) : (
                       <RiEyeFill size={20}></RiEyeFill>
                     )}
-                  </button>
+                  </label>
                 </div>
                 {errors.password?.type === "required" && (
                   <span className="text-red-600 py-2">

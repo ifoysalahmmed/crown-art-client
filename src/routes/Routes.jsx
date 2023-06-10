@@ -16,6 +16,7 @@ import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import UpdateClass from "../pages/Dashboard/UpdateClass/UpdateClass";
 import MySelectedClasses from "../pages/Dashboard/MySelectedClasses/MySelectedClasses";
+import Payment from "../pages/Dashboard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
@@ -56,7 +57,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "/dashboard/manage-users",
+        path: "manage-users",
         element: (
           <AdminRoute>
             <Users></Users>
@@ -64,7 +65,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/manage-classes",
+        path: "manage-classes",
         element: (
           <AdminRoute>
             <ManageClasses></ManageClasses>
@@ -72,7 +73,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/feedback/:id",
+        path: "feedback/:id",
         element: (
           <AdminRoute>
             <FeedbackForm></FeedbackForm>
@@ -80,7 +81,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/add-class",
+        path: "add-class",
         element: (
           <InstructorRoute>
             <AddClass></AddClass>
@@ -88,7 +89,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/my-classes",
+        path: "my-classes",
         element: (
           <InstructorRoute>
             <MyClasses></MyClasses>
@@ -96,7 +97,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/update-class/:id",
+        path: "update-class/:id",
         element: (
           <InstructorRoute>
             <UpdateClass></UpdateClass>
@@ -106,12 +107,16 @@ export const router = createBrowserRouter([
           fetch(`${import.meta.env.VITE_API_URL}/classes/${params.id}`),
       },
       {
-        path: "/dashboard/selected-classes",
+        path: "selected-classes",
         element: <MySelectedClasses></MySelectedClasses>,
       },
       {
-        path: "/dashboard/enrolled-classes",
+        path: "enrolled-classes",
         element: <h2>My Enrolled Classes is coming</h2>,
+      },
+      {
+        path: "payment/:id",
+        element: <Payment></Payment>,
       },
     ],
   },

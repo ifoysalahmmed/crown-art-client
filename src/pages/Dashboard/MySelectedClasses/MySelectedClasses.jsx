@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdPayment } from "react-icons/md";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const MySelectedClasses = () => {
   const { user } = useAuth();
@@ -88,12 +89,14 @@ const MySelectedClasses = () => {
                       </button>
                     </td>
                     <td>
-                      <button className="btn btn-ghost btn-sm">
-                        <MdPayment
-                          className="text-accent"
-                          size={20}
-                        ></MdPayment>
-                      </button>
+                      <Link to={`/dashboard/payment/${bookingItem?._id}`}>
+                        <button className="btn btn-ghost btn-sm">
+                          <MdPayment
+                            className="text-accent"
+                            size={20}
+                          ></MdPayment>
+                        </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

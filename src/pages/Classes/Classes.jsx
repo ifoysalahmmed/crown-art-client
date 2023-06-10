@@ -26,6 +26,7 @@ const Classes = () => {
     if (user && user?.email) {
       const { _id, ...rest } = classInfo;
       const bookingItem = {
+        bookingItemId: _id,
         ...rest,
         email: user?.email,
       };
@@ -56,7 +57,7 @@ const Classes = () => {
         {classes.map((classInfo) => (
           <div
             key={classInfo._id}
-            className={`card w-full h-full ${
+            className={`card w-full h-96 ${
               classInfo.seats === 0
                 ? "bg-red-600 text-white"
                 : "bg-[#90c641e6] text-white"

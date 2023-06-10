@@ -7,6 +7,8 @@ import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import Footer from "../pages/Shared/Footer/Footer";
 
+// TODO: need add icons in the dashboard routes
+
 const Dashboard = () => {
   const { isAdmin } = useAdmin();
   const { isInstructor } = useInstructor();

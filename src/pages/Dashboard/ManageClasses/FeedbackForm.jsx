@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 
 const FeedbackForm = () => {
-  const id = useParams();
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
@@ -14,7 +14,7 @@ const FeedbackForm = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    fetch(`${import.meta.env.VITE_API_URL}/classes/admin/feedback/${id?.id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/classes/admin/feedback/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

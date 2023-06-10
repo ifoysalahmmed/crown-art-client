@@ -8,11 +8,15 @@ const Main = () => {
   return (
     <>
       <Navbar></Navbar>
-      <Container>
-        <div className="pt-20">
-          <Outlet></Outlet>
-        </div>
-      </Container>
+      {/* TODO: fixed the issue of min height */}
+      {/* className="min-h-[calc-(100vh-144px)]" */}
+      <div>
+        <Container>
+          <div className="pt-20">
+            <Outlet></Outlet>
+          </div>
+        </Container>
+      </div>
       <Footer></Footer>
     </>
   );

@@ -6,23 +6,27 @@ const Footer = () => {
     <div className="bg-[#283333cc]">
       <Container>
         <footer className="px-5 pt-10 pb-4 rounded-md mt-12 text-base-content">
-          <div className="footer">
-            <div className="flex flex-col justify-center items-center">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:place-items-start">
+            <div className="flex flex-col justify-center items-center md:mr-12">
               <img src="/king.png" alt="" className="w-12" />
-              <p className="text-xl font-semibold text-white">Crown Art</p>
+              <p className="text-2xl font-bold text-white mb-2">Crown Art</p>
+              <h3 className="text-white text-center font-semibold">
+                The best online art school taught by the top artists in the
+                industry.
+              </h3>
             </div>
-            <div className="text-white">
-              <span className="mb-2 font-bold uppercase text-[#90c641e6]">
+            <div className="text-white flex flex-col justify-center items-center">
+              <p className="mb-2 font-bold uppercase text-[#90c641e6]">
                 Contact
-              </span>
+              </p>
               <a className="link link-hover">+8801500-121121</a>
               <a className="link link-hover">+8801500-121122</a>
               <a className="link link-hover">+8801500-121123</a>
             </div>
-            <div>
-              <span className="mb-2 font-bold uppercase text-[#90c641e6]">
+            <div className="text-white flex flex-col justify-center items-center">
+              <p className="mb-2 font-bold uppercase text-[#90c641e6]">
                 Social
-              </span>
+              </p>
               <div className="grid grid-flow-col gap-4 text-[#90c641e6]">
                 <a href="https://twitter.com/" target="_blank" rel="noreferrer">
                   <svg
@@ -63,10 +67,10 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className="text-white">
-              <span className="mb-2 font-bold uppercase text-[#90c641e6]">
+            <div className="text-white flex flex-col justify-center items-center">
+              <p className="mb-2 font-bold uppercase text-[#90c641e6]">
                 Address
-              </span>
+              </p>
               <a className="link link-hover">New Market, Dhaka, Bangladesh</a>
             </div>
           </div>

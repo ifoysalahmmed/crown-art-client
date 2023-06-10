@@ -12,7 +12,7 @@ const PopularInstructors = () => {
   }, []);
 
   return (
-    <div className="mt-20">
+    <div className="mt-10">
       <h2 className="text-center text-3xl font-bold mb-6 text-[#90c641e6] animate__animated animate__bounceInLeft">
         Our Popular Instructors
       </h2>

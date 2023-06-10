@@ -24,8 +24,9 @@ const Classes = () => {
 
   const handleAddClass = (classInfo) => {
     if (user && user?.email) {
+      const { _id, ...rest } = classInfo;
       const bookingItem = {
-        ...classInfo,
+        ...rest,
         email: user?.email,
       };
 

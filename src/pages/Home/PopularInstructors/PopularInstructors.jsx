@@ -4,7 +4,7 @@ const PopularInstructors = () => {
   const [popularInstructors, setPopularInstructors] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/users/instructors`)
+    fetch(`${import.meta.env.VITE_API_URL}/popularInstructors`)
       .then((res) => res.json())
       .then((data) => {
         setPopularInstructors(data);

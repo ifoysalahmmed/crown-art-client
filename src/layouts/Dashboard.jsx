@@ -5,6 +5,7 @@ import Container from "../pages/Shared/Container/Container";
 import { FaUsers } from "react-icons/fa";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import Footer from "../pages/Shared/Footer/Footer";
 
 const Dashboard = () => {
   const { isAdmin } = useAdmin();
@@ -96,6 +97,7 @@ const Dashboard = () => {
           </div>
         </div>
       </Container>
+      <Footer></Footer>
     </>
   );
 };

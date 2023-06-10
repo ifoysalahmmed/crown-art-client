@@ -1,10 +1,24 @@
 import React from "react";
-import useClasses from "../../../hooks/useClasses";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const MyClasses = () => {
-  const [classes, refetch] = useClasses();
+  const { user } = useAuth();
+
+  const [axiosSecure] = useAxiosSecure();
+
+  const { data: classes = [] } = useQuery({
+    queryKey: ["classes", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure(
+        `${import.meta.env.VITE_API_URL}/classes/instructor/${user?.email}`
+      );
+      return res.data;
+    },
+  });
 
   return (
     <div className="w-full px-6">

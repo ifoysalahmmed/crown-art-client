@@ -3,9 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth/useAuth";
 import Avatar from "./Avatar";
 import { toast } from "react-hot-toast";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+
+  const navigate = useNavigate();
+
+  const { isAdmin } = useAdmin();
+  const { isInstructor } = useInstructor();
 
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
@@ -24,8 +31,6 @@ const Navbar = () => {
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
-
-  const navigate = useNavigate();
 
   const handleLogOut = () => {
     logOut()
@@ -81,7 +86,17 @@ const Navbar = () => {
               {user?.email && (
                 <>
                   <li className="font-semibold">
-                    <Link to="/dashboard">Dashboard</Link>
+                    <Link
+                      to={
+                        isAdmin
+                          ? "/dashboard/manage-classes"
+                          : isInstructor
+                          ? "/dashboard/add-class"
+                          : "/dashboard/selected-classes"
+                      }
+                    >
+                      Dashboard
+                    </Link>
                   </li>
                 </>
               )}
@@ -97,7 +112,17 @@ const Navbar = () => {
             {user?.email && (
               <>
                 <li className="font-semibold">
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link
+                    to={
+                      isAdmin
+                        ? "/dashboard/manage-classes"
+                        : isInstructor
+                        ? "/dashboard/add-class"
+                        : "/dashboard/selected-classes"
+                    }
+                  >
+                    Dashboard
+                  </Link>
                 </li>
               </>
             )}

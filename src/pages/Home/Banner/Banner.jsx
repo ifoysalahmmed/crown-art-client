@@ -37,9 +37,9 @@ const Banner = () => {
             <img
               src={slider01}
               alt=""
-              className="w-full max-h-[70vh] object-cover"
+              className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
-            <div className="bg-black bg-opacity-50 absolute inset-0 flex flex-col items-center justify-center">
+            <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
               <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
@@ -54,9 +54,9 @@ const Banner = () => {
             <img
               src={slider02}
               alt=""
-              className="w-full max-h-[70vh] object-cover"
+              className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
-            <div className="bg-black bg-opacity-50 absolute inset-0 flex flex-col items-center justify-center">
+            <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
               <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
@@ -71,9 +71,9 @@ const Banner = () => {
             <img
               src={slider03}
               alt=""
-              className="w-full max-h-[70vh] object-cover"
+              className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
-            <div className="bg-black bg-opacity-50 absolute inset-0 flex flex-col items-center justify-center">
+            <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
               <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
@@ -88,9 +88,9 @@ const Banner = () => {
             <img
               src={slider04}
               alt=""
-              className="w-full max-h-[70vh] object-cover"
+              className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
-            <div className="bg-black bg-opacity-50 absolute inset-0 flex flex-col items-center justify-center">
+            <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
               <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
@@ -105,9 +105,9 @@ const Banner = () => {
             <img
               src={slider05}
               alt=""
-              className="w-full max-h-[70vh] object-cover"
+              className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
-            <div className="bg-black bg-opacity-50 absolute inset-0 flex flex-col items-center justify-center">
+            <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
               <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>

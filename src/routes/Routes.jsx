@@ -8,17 +8,17 @@ import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layouts/Dashboard";
 import AdminRoute from "./AdminRoute";
-import Users from "../pages/Dashboard/Users/Users";
 import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import Users from "../pages/Dashboard/Users/Users";
 import FeedbackForm from "../pages/Dashboard/ManageClasses/FeedbackForm";
 import InstructorRoute from "./InstructorRoute";
 import AddClass from "../pages/Dashboard/AddClass/AddClass";
 import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 import UpdateClass from "../pages/Dashboard/UpdateClass/UpdateClass";
 import MySelectedClasses from "../pages/Dashboard/MySelectedClasses/MySelectedClasses";
+import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 
 export const router = createBrowserRouter([
   {
@@ -58,18 +58,18 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "manage-users",
-        element: (
-          <AdminRoute>
-            <Users></Users>
-          </AdminRoute>
-        ),
-      },
-      {
         path: "manage-classes",
         element: (
           <AdminRoute>
             <ManageClasses></ManageClasses>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <AdminRoute>
+            <Users></Users>
           </AdminRoute>
         ),
       },

@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdPayment } from "react-icons/md";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
 import EmptyInfo from "../../Shared/EmptyInfo/EmptyInfo";
+import { Helmet } from "react-helmet-async";
 
 const MySelectedClasses = () => {
   const { user } = useAuth();
@@ -39,7 +40,10 @@ const MySelectedClasses = () => {
   };
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Crown Art | Selected Classes</title>
+      </Helmet>
       <div className="w-full px-6">
         {bookingItems &&
         Array.isArray(bookingItems) &&
@@ -117,7 +121,7 @@ const MySelectedClasses = () => {
           ></EmptyInfo>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

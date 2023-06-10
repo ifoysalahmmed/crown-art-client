@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
@@ -13,7 +14,10 @@ const Instructors = () => {
   }, []);
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Crown Art | Instructors</title>
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {instructors.map((instructor) => (
           <div
@@ -34,7 +38,7 @@ const Instructors = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

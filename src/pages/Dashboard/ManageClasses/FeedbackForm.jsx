@@ -1,10 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const FeedbackForm = () => {
   const { id } = useParams();
+
+  const [axiosSecure] = useAxiosSecure();
 
   const navigate = useNavigate();
 
@@ -13,17 +17,12 @@ const FeedbackForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    fetch(`${import.meta.env.VITE_API_URL}/classes/admin/feedback/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
+    axiosSecure
+      .put(`${import.meta.env.VITE_API_URL}/classes/admin/feedback/${id}`, data)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
           toast.success("Your feedback is submitted!");
           navigate("/dashboard/manage-classes");
         }
@@ -31,29 +30,36 @@ const FeedbackForm = () => {
   };
 
   return (
-    <div className="w-full px-6">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text font-semibold">Feedback</span>
-          </label>
-          <textarea
-            placeholder="Write your reason for approving or denying the class..."
-            {...register("feedback", { required: true })}
-            className="textarea textarea-bordered h-48"
-          ></textarea>
-          {errors.feedback && (
-            <span className="text-red-600 px-4 py-2">Feedback is required</span>
-          )}
-        </div>
+    <>
+      <Helmet>
+        <title>Crown Art | Feedback</title>
+      </Helmet>
+      <div className="w-full px-6">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text font-semibold">Feedback</span>
+            </label>
+            <textarea
+              placeholder="Write your reason for approving or denying the class..."
+              {...register("feedback", { required: true })}
+              className="textarea textarea-bordered h-48"
+            ></textarea>
+            {errors.feedback && (
+              <span className="text-red-600 px-4 py-2">
+                Feedback is required
+              </span>
+            )}
+          </div>
 
-        <input
-          type="submit"
-          value="Submit Feedback"
-          className="btn btn-info btn-block bg-[#90c641e6] border-0 text-white mt-4"
-        />
-      </form>
-    </div>
+          <input
+            type="submit"
+            value="Submit Feedback"
+            className="btn btn-info btn-block bg-[#90c641e6] border-0 text-white mt-4"
+          />
+        </form>
+      </div>
+    </>
   );
 };
 

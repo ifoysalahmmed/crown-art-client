@@ -1,8 +1,9 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 import EmptyInfo from "../../Shared/EmptyInfo/EmptyInfo";
+import { Helmet } from "react-helmet-async";
 
 const EnrolledClasses = () => {
   const { user } = useAuth();
@@ -18,7 +19,10 @@ const EnrolledClasses = () => {
   });
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Crown Art | Enrolled Classes</title>
+      </Helmet>
       <div className="w-full px-6">
         {classes && Array.isArray(classes) && classes.length > 0 ? (
           <div className="overflow-x-auto">
@@ -56,7 +60,7 @@ const EnrolledClasses = () => {
           ></EmptyInfo>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

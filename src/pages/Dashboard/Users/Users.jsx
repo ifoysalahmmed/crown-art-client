@@ -1,7 +1,8 @@
 import React from "react";
-import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Users = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -34,54 +35,59 @@ const Users = () => {
   };
 
   return (
-    <div className="w-full px-6">
-      <div className="overflow-x-auto">
-        <table className="table w-full text-center">
-          <thead className="bg-[#90c641e6]">
-            <tr className="text-white capitalize">
-              <th></th>
-              <th>name</th>
-              <th>email</th>
-              <th>role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, idx) => (
-              <tr key={user._id}>
-                <th>{idx + 1}</th>
-                <td>
-                  <div className="font-bold">{user?.name}</div>
-                </td>
-                <td>{user?.email}</td>
-                <th>
-                  {user?.role === "instructor" ? (
-                    "Instructor"
-                  ) : user?.role === "admin" ? (
-                    "Admin"
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => handleMakeAdmin(user)}
-                        className="btn btn-ghost btn-xs capitalize"
-                      >
-                        make admin
-                      </button>
-
-                      <button
-                        onClick={() => handleMakeInstructor(user)}
-                        className="btn btn-ghost btn-xs capitalize"
-                      >
-                        make instructor
-                      </button>
-                    </>
-                  )}
-                </th>
+    <>
+      <Helmet>
+        <title>Crown Art | Manage Users</title>
+      </Helmet>
+      <div className="w-full px-6">
+        <div className="overflow-x-auto">
+          <table className="table w-full text-center">
+            <thead className="bg-[#90c641e6]">
+              <tr className="text-white capitalize">
+                <th></th>
+                <th>name</th>
+                <th>email</th>
+                <th>role</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user, idx) => (
+                <tr key={user._id}>
+                  <th>{idx + 1}</th>
+                  <td>
+                    <div className="font-bold">{user?.name}</div>
+                  </td>
+                  <td>{user?.email}</td>
+                  <th>
+                    {user?.role === "instructor" ? (
+                      "Instructor"
+                    ) : user?.role === "admin" ? (
+                      "Admin"
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => handleMakeAdmin(user)}
+                          className="btn btn-ghost btn-xs capitalize"
+                        >
+                          make admin
+                        </button>
+
+                        <button
+                          onClick={() => handleMakeInstructor(user)}
+                          className="btn btn-ghost btn-xs capitalize"
+                        >
+                          make instructor
+                        </button>
+                      </>
+                    )}
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

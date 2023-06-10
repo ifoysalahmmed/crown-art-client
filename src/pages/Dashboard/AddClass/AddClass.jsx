@@ -1,12 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_token = import.meta.env.VITE_IMGBB_KEY;
 
 const AddClass = () => {
   const { user } = useAuth();
+
+  const [axiosSecure] = useAxiosSecure();
+
+  const navigate = useNavigate();
 
   const defaultValues = {
     instructor: user?.displayName,
@@ -34,27 +41,24 @@ const AddClass = () => {
         data.status = "pending";
         data.enrolled = parseInt(0);
 
-        fetch(`${import.meta.env.VITE_API_URL}/classes`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
+        axiosSecure
+          .post(`${import.meta.env.VITE_API_URL}/classes`, data)
+          .then((res) => {
+            if (res.data.insertedId) {
               reset();
               toast.success("Class added successfully");
-              console.log(data);
+              navigate("/dashboard/my-classes");
             }
           });
       });
   };
 
   return (
-    <div className="w-full px-6">
-      <div>
+    <>
+      <Helmet>
+        <title>Crown Art | Add Class</title>
+      </Helmet>
+      <div className="w-full px-6">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="form-control w-full">
@@ -148,7 +152,7 @@ const AddClass = () => {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 

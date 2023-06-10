@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth/useAuth";
 import useUserInfo from "../../hooks/useUserInfo";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const { user } = useAuth();
@@ -52,7 +53,10 @@ const Classes = () => {
   };
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Crown Art | Classes</title>
+      </Helmet>
       <div className=" grid grid-cols-1 md:grid-cols-3 gap-6">
         {classes.map((classInfo) => (
           <div
@@ -97,7 +101,7 @@ const Classes = () => {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

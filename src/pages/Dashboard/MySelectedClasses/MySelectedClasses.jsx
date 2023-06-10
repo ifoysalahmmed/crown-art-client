@@ -6,6 +6,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdPayment } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import EmptyInfo from "../../Shared/EmptyInfo/EmptyInfo";
 
 const MySelectedClasses = () => {
   const { user } = useAuth();
@@ -40,69 +41,81 @@ const MySelectedClasses = () => {
   return (
     <div>
       <div className="w-full px-6">
-        <div className="overflow-x-auto">
-          <table className="table w-full text-center">
-            <thead className="bg-[#90c641e6]">
-              <tr className="text-white capitalize">
-                <th></th>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Instructor</th>
-                <th>Available Seats</th>
-                <th>Price</th>
-                <th>Delete</th>
-                <th>Pay</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookingItems &&
-                bookingItems.map((bookingItem, idx) => (
-                  <tr key={bookingItem._id}>
-                    <th>{idx + 1}</th>
-                    <td>
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={bookingItem?.image}
-                            alt="Avatar Tailwind CSS Component"
-                          />
+        {bookingItems &&
+        Array.isArray(bookingItems) &&
+        bookingItems.length > 0 ? (
+          <div className="overflow-x-auto">
+            <table className="table w-full text-center">
+              <thead className="bg-[#90c641e6]">
+                <tr className="text-white capitalize">
+                  <th></th>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Instructor</th>
+                  <th>Available Seats</th>
+                  <th>Price</th>
+                  <th>Delete</th>
+                  <th>Pay</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookingItems &&
+                  bookingItems.map((bookingItem, idx) => (
+                    <tr key={bookingItem._id}>
+                      <th>{idx + 1}</th>
+                      <td>
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img
+                              src={bookingItem?.image}
+                              alt="Avatar Tailwind CSS Component"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="font-bold">{bookingItem?.name}</div>
-                    </td>
-                    <td>
-                      <div className="font-bold">{bookingItem?.instructor}</div>
-                    </td>
-                    <td>{bookingItem?.seats}</td>
-                    <td>${bookingItem?.price}</td>
-                    <td>
-                      <button
-                        onClick={() => handleDelete(bookingItem)}
-                        className="btn btn-ghost btn-sm"
-                      >
-                        <RiDeleteBin6Line
-                          className="text-warning"
-                          size={20}
-                        ></RiDeleteBin6Line>
-                      </button>
-                    </td>
-                    <td>
-                      <Link to={`/dashboard/payment/${bookingItem?._id}`}>
-                        <button className="btn btn-ghost btn-sm">
-                          <MdPayment
-                            className="text-accent"
+                      </td>
+                      <td>
+                        <div className="font-bold">{bookingItem?.name}</div>
+                      </td>
+                      <td>
+                        <div className="font-bold">
+                          {bookingItem?.instructor}
+                        </div>
+                      </td>
+                      <td>{bookingItem?.seats}</td>
+                      <td>${bookingItem?.price}</td>
+                      <td>
+                        <button
+                          onClick={() => handleDelete(bookingItem)}
+                          className="btn btn-ghost btn-sm"
+                        >
+                          <RiDeleteBin6Line
+                            className="text-warning"
                             size={20}
-                          ></MdPayment>
+                          ></RiDeleteBin6Line>
                         </button>
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
+                      </td>
+                      <td>
+                        <Link to={`/dashboard/payment/${bookingItem?._id}`}>
+                          <button className="btn btn-ghost btn-sm">
+                            <MdPayment
+                              className="text-accent"
+                              size={20}
+                            ></MdPayment>
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <EmptyInfo
+            message={"You haven't select any class. Select first!"}
+            address={"/classes"}
+            label={"select class"}
+          ></EmptyInfo>
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,10 @@ import { Link, Outlet } from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar/Navbar";
 import Container from "../pages/Shared/Container/Container";
 import { FaUsers } from "react-icons/fa";
+import { SiGoogleclassroom } from "react-icons/si";
+import { GiClassicalKnowledge } from "react-icons/gi";
+import { MdClass } from "react-icons/md";
+import { FcPaid } from "react-icons/fc";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import Footer from "../pages/Shared/Footer/Footer";
@@ -38,7 +42,8 @@ const Dashboard = () => {
                       to="/dashboard/manage-classes"
                       className="text-white font-medium"
                     >
-                      <FaUsers></FaUsers> Manage Classes
+                      <SiGoogleclassroom size={20}></SiGoogleclassroom> Manage
+                      Classes
                     </Link>
                   </li>
                   <li>
@@ -46,7 +51,7 @@ const Dashboard = () => {
                       to="/dashboard/manage-users"
                       className="text-white font-medium"
                     >
-                      <FaUsers></FaUsers> Manage Users
+                      <FaUsers size={20}></FaUsers> Manage Users
                     </Link>
                   </li>
                 </>
@@ -60,7 +65,8 @@ const Dashboard = () => {
                       to="/dashboard/add-class"
                       className="text-white font-medium"
                     >
-                      <FaUsers></FaUsers> Add a Class
+                      <GiClassicalKnowledge size={20}></GiClassicalKnowledge>{" "}
+                      Add a Class
                     </Link>
                   </li>
                   <li>
@@ -68,7 +74,8 @@ const Dashboard = () => {
                       to="/dashboard/my-classes"
                       className="text-white font-medium"
                     >
-                      <FaUsers></FaUsers> My Classes
+                      <SiGoogleclassroom size={20}></SiGoogleclassroom> My
+                      Classes
                     </Link>
                   </li>
                 </>
@@ -82,7 +89,7 @@ const Dashboard = () => {
                       to="/dashboard/selected-classes"
                       className="text-white font-medium"
                     >
-                      <FaUsers></FaUsers> My Selected Classes
+                      <MdClass size={20}></MdClass> My Selected Classes
                     </Link>
                   </li>
                   <li>
@@ -90,7 +97,7 @@ const Dashboard = () => {
                       to="/dashboard/enrolled-classes"
                       className="text-white font-medium"
                     >
-                      <FaUsers></FaUsers> My Enrolled Classes
+                      <FcPaid size={20}></FcPaid> My Enrolled Classes
                     </Link>
                   </li>
                 </>

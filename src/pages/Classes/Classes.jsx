@@ -61,18 +61,22 @@ const Classes = () => {
         {classes.map((classInfo) => (
           <div
             key={classInfo._id}
-            className={`card w-full h-96 ${
-              classInfo.seats === 0
-                ? "bg-red-600 text-white"
-                : "bg-[#90c641e6] text-white"
-            } shadow-xl`}
+            className={`card w-full h-96 text-white shadow-xl ${
+              classInfo.seats === 0 ? "bg-red-600" : "bg-[#90c641e6]"
+            }`}
           >
-            <figure>
-              <img src={classInfo.image} alt="Class Image" />
+            <figure className="h-full">
+              <img
+                src={classInfo.image}
+                alt="Class Image"
+                className="w-full h-full"
+              />
             </figure>
             <div className="card-body">
               <h2 className="card-title">{classInfo.name}</h2>
-              <p className="font-medium">Instructor Name: {classInfo.instructor}</p>
+              <p className="font-medium">
+                Instructor Name: {classInfo.instructor}
+              </p>
               <p className="font-medium">Seats: {classInfo.seats}</p>
               <p className="font-medium">Price: ${classInfo.price}</p>
               <div className="card-actions justify-end">

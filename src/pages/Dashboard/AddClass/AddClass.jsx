@@ -20,7 +20,12 @@ const AddClass = () => {
     email: user?.email,
   };
 
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
@@ -71,6 +76,11 @@ const AddClass = () => {
                 {...register("name", { required: true })}
                 className="input input-bordered w-full"
               />
+              {errors.name && (
+                <span className="text-red-600 py-2">
+                  Class Name is required
+                </span>
+              )}
             </div>
 
             <div className="form-control w-full">
@@ -82,6 +92,11 @@ const AddClass = () => {
                 {...register("image", { required: true })}
                 className="file-input file-input-bordered file-input-ghost w-full"
               />
+              {errors.image && (
+                <span className="text-red-600 py-2">
+                  Class Image is required
+                </span>
+              )}
             </div>
 
             <div className="form-control w-full">
@@ -128,6 +143,11 @@ const AddClass = () => {
                 {...register("seats", { required: true })}
                 className="input input-bordered w-full"
               />
+              {errors.seats && (
+                <span className="text-red-600 py-2">
+                  Available Seats is required
+                </span>
+              )}
             </div>
 
             <div className="form-control w-full">
@@ -140,6 +160,9 @@ const AddClass = () => {
                 {...register("price", { required: true })}
                 className="input input-bordered w-full"
               />
+              {errors.price && (
+                <span className="text-red-600 py-2">Price is required</span>
+              )}
             </div>
           </div>
 

@@ -43,8 +43,6 @@ const SignUp = () => {
   const onSubmit = (data) => {
     const { name, email, password, confirmPassword, photo } = data || {};
 
-    console.log(photo);
-
     if (password !== confirmPassword) {
       setPassError(true);
       return;

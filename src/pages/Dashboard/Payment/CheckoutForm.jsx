@@ -17,6 +17,7 @@ const CheckoutForm = ({ bookingInfo }) => {
   const elements = useElements();
 
   const [clientSecret, setClientSecret] = useState("");
+  const [processing, setProcessing] = useState(false);
 
   const navigate = useNavigate();
 
@@ -46,9 +47,9 @@ const CheckoutForm = ({ bookingInfo }) => {
 
     if (error) {
       toast.error(error.message);
-    } else {
-      //
     }
+
+    setProcessing(true);
 
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -64,6 +65,8 @@ const CheckoutForm = ({ bookingInfo }) => {
     if (confirmError) {
       toast.error(confirmError.message);
     }
+
+    setProcessing(false);
 
     if (paymentIntent?.status === "succeeded") {
       const transactionId = paymentIntent?.id;
@@ -112,7 +115,7 @@ const CheckoutForm = ({ bookingInfo }) => {
         <button
           type="submit"
           className="btn btn-success text-white"
-          disabled={!stripe}
+          disabled={!stripe || !clientSecret || processing}
         >
           Pay
         </button>

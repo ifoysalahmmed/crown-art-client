@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import Navbar from "../pages/Shared/Navbar/Navbar";
 import Container from "../pages/Shared/Container/Container";
 import { FaUsers } from "react-icons/fa";
@@ -36,21 +36,21 @@ const Dashboard = () => {
               {isAdmin ? (
                 <>
                   <li>
-                    <Link
+                    <NavLink
                       to="/dashboard/manage-classes"
                       className="text-white font-medium"
                     >
                       <SiGoogleclassroom size={20}></SiGoogleclassroom> Manage
                       Classes
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link
+                    <NavLink
                       to="/dashboard/manage-users"
                       className="text-white font-medium"
                     >
                       <FaUsers size={20}></FaUsers> Manage Users
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               ) : (
@@ -59,22 +59,22 @@ const Dashboard = () => {
               {isInstructor ? (
                 <>
                   <li>
-                    <Link
+                    <NavLink
                       to="/dashboard/add-class"
                       className="text-white font-medium"
                     >
                       <GiClassicalKnowledge size={20}></GiClassicalKnowledge>{" "}
                       Add a Class
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link
+                    <NavLink
                       to="/dashboard/my-classes"
                       className="text-white font-medium"
                     >
                       <SiGoogleclassroom size={20}></SiGoogleclassroom> My
                       Classes
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               ) : (
@@ -83,20 +83,20 @@ const Dashboard = () => {
               {!isAdmin && !isInstructor && (
                 <>
                   <li>
-                    <Link
+                    <NavLink
                       to="/dashboard/selected-classes"
                       className="text-white font-medium"
                     >
                       <MdClass size={20}></MdClass> My Selected Classes
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
-                    <Link
+                    <NavLink
                       to="/dashboard/enrolled-classes"
                       className="text-white font-medium"
                     >
                       <FcPaid size={20}></FcPaid> My Enrolled Classes
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               )}

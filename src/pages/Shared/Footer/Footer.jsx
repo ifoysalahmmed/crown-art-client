@@ -74,7 +74,7 @@ const Footer = () => {
               <a className="link link-hover">New Market, Dhaka, Bangladesh</a>
             </div>
           </div>
-          <p className="font-semibold text-[#283333cc] text-xs text-center mt-6">
+          <p className="font-semibold text-gray-300 text-xs text-center mt-6">
             Copyright © 2023 - All right reserved by Crown Art
           </p>
         </footer>

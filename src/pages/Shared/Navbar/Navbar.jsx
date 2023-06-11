@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth/useAuth";
 import Avatar from "./Avatar";
 import { toast } from "react-hot-toast";
@@ -46,13 +46,13 @@ const Navbar = () => {
   const navOptions = (
     <>
       <li className="font-semibold">
-        <Link to="/">Home</Link>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li className="font-semibold">
-        <Link to="/instructors">Instructors</Link>
+        <NavLink to="/instructors">Instructors</NavLink>
       </li>
       <li className="font-semibold">
-        <Link to="/classes">Classes</Link>
+        <NavLink to="/classes">Classes</NavLink>
       </li>
     </>
   );
@@ -90,7 +90,7 @@ const Navbar = () => {
               {user?.email && (
                 <>
                   <li className="font-semibold">
-                    <Link
+                    <NavLink
                       to={
                         isAdmin
                           ? "/dashboard/manage-classes"
@@ -100,7 +100,7 @@ const Navbar = () => {
                       }
                     >
                       Dashboard
-                    </Link>
+                    </NavLink>
                   </li>
                 </>
               )}
@@ -116,7 +116,7 @@ const Navbar = () => {
             {user?.email && (
               <>
                 <li className="font-semibold">
-                  <Link
+                  <NavLink
                     to={
                       isAdmin
                         ? "/dashboard/manage-classes"
@@ -126,7 +126,7 @@ const Navbar = () => {
                     }
                   >
                     Dashboard
-                  </Link>
+                  </NavLink>
                 </li>
               </>
             )}
@@ -157,12 +157,12 @@ const Navbar = () => {
             </svg>
           </label>
           {!user?.email && (
-            <Link
+            <NavLink
               className="btn btn-outline border-[#90c641e6] hover:btn-info text-[#90c641e6]"
               to="/login"
             >
               <span className="">Login</span>
-            </Link>
+            </NavLink>
           )}
           {user?.email && (
             <div className="dropdown dropdown-end">

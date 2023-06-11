@@ -40,7 +40,7 @@ const Banner = () => {
               className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
             <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
-              <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
+              <h3 className="text-green-400 text-2xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
               <p className="text-green-100 text-xs md:text-base text-center font-light md:font-semibold px-14">
@@ -57,7 +57,7 @@ const Banner = () => {
               className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
             <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
-              <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
+              <h3 className="text-green-400 text-2xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
               <p className="text-green-100 text-xs md:text-base text-center font-light md:font-semibold px-14">
@@ -74,7 +74,7 @@ const Banner = () => {
               className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
             <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
-              <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
+              <h3 className="text-green-400 text-2xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
               <p className="text-green-100 text-xs md:text-base text-center font-light md:font-semibold px-14">
@@ -91,7 +91,7 @@ const Banner = () => {
               className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
             <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
-              <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
+              <h3 className="text-green-400 text-2xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
               <p className="text-green-100 text-xs md:text-base text-center font-light md:font-semibold px-14">
@@ -108,7 +108,7 @@ const Banner = () => {
               className="w-full max-h-[70vh] object-cover rounded-2xl"
             />
             <div className="bg-black bg-opacity-50 rounded-2xl absolute inset-0 flex flex-col items-center justify-center">
-              <h3 className="text-green-400 text-xl md:text-4xl font-bold text-center mb-4">
+              <h3 className="text-green-400 text-2xl md:text-4xl font-bold text-center mb-4">
                 Elevate your skills
               </h3>
               <p className="text-green-100 text-xs md:text-base text-center font-light md:font-semibold px-14">

@@ -61,7 +61,7 @@ const Navbar = () => {
     <>
       <div
         className={`navbar fixed z-10 bg-[#283333cc] xl:px-20 md:px-10 sm:px-2 px-4  ${
-          theme === "light" ? "text-base-100" : "text-white"
+          theme === "light" ? "text-base-100" : "text-green-100"
         }`}
       >
         <div className="navbar-start">

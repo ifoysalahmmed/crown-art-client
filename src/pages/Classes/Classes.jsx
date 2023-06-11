@@ -72,9 +72,9 @@ const Classes = () => {
             </figure>
             <div className="card-body">
               <h2 className="card-title">{classInfo.name}</h2>
-              <p>Instructor Name: {classInfo.instructor}</p>
-              <p>Seats: {classInfo.seats}</p>
-              <p>Price: ${classInfo.price}</p>
+              <p className="font-medium">Instructor Name: {classInfo.instructor}</p>
+              <p className="font-medium">Seats: {classInfo.seats}</p>
+              <p className="font-medium">Price: ${classInfo.price}</p>
               <div className="card-actions justify-end">
                 {classInfo.seats === 0 ? (
                   <button className="btn btn-primary" disabled>

@@ -23,7 +23,7 @@ const MySelectedClasses = () => {
   );
 
   const handleDelete = (bookingItem) => {
-    fetch(`http://localhost:5000/classBookings/${bookingItem?._id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/classBookings/${bookingItem?._id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

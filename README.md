@@ -2,7 +2,7 @@
 
 ## **[Live site link](https://crown-art-client.web.app/)**
 
-## **[Server-side](https://github.com/ifoysalahmmed/crown-art-client)**
+## **[Server-side](https://github.com/ifoysalahmmed/crown-art-server)**
 
 ## **Some key Features of this Project -**
 

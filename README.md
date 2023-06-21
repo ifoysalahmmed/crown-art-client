@@ -1,19 +1,21 @@
 # **🎨 Crown Art**
 
-## **[Live site](https://crown-art-client.web.app/)**
+## **Live Link:**
+Hosted in Firebase -> **[Crown Art](https://crown-art-client.web.app/)**
 
-## **[Server-side](https://github.com/ifoysalahmmed/crown-art-server)**
+## **Backend Link:**
+Github Repo -> **[Server-side](https://github.com/ifoysalahmmed/crown-art-server)**
 
 ## **Some key Features of this Project -**
 
 - User can Register. Without Registration no user can use any functionality without visit the website.
 - User can Login with Google.
-- Student can select class
-- Student must have to pay to enroll him/her in that class
-- Instructor can add class and that class status initially will be pending
-- Instructor can update class information
-- Admin can make a user admin or instructor
-- Admin can manage class that means admin can approve or deny any class and give his/her justification why approve or deny that class
+- Student can select class.
+- Student must have to pay to enroll him/her in that class.
+- Instructor can add class and that class status initially will be pending.
+- Instructor can update class information.
+- Admin can make a user admin or instructor.
+- Admin can manage class that means admin can approve or deny any class and give his/her justification why approve or deny that class.
 
 ## **Used packages / technology name for this Project -**
 

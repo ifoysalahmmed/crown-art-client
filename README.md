@@ -1,6 +1,6 @@
 # **🎨 Crown Art**
 
-## **[Live site link](https://crown-art-client.web.app/)**
+## **[Live site](https://crown-art-client.web.app/)**
 
 ## **[Server-side](https://github.com/ifoysalahmmed/crown-art-server)**
 

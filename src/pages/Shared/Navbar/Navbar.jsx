@@ -141,7 +141,7 @@ const Navbar = () => {
             />
 
             <svg
-              className="swap-on fill-current w-10 h-10"
+              className="swap-on fill-current w-7 h-7"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
@@ -149,7 +149,7 @@ const Navbar = () => {
             </svg>
 
             <svg
-              className="swap-off fill-current w-10 h-10"
+              className="swap-off fill-current w-7 h-7"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >

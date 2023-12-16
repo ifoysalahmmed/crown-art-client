@@ -44,6 +44,8 @@ const Classes = () => {
           if (data.insertedId) {
             toast.success("Class added on the selected classes");
             navigate("/dashboard/selected-classes");
+          } else {
+            toast.error(data.message);
           }
         });
     } else {

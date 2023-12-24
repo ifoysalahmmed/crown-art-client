@@ -7,6 +7,7 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { GiClassicalKnowledge } from "react-icons/gi";
 import { MdClass } from "react-icons/md";
 import { FcPaid } from "react-icons/fc";
+import { CgProfile } from "react-icons/cg";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import Footer from "../pages/Shared/Footer/Footer";
@@ -74,6 +75,14 @@ const Dashboard = () => {
                     >
                       <SiGoogleclassroom size={20}></SiGoogleclassroom> My
                       Classes
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/dashboard/update-profile"
+                      className="text-white font-medium"
+                    >
+                      <CgProfile size={20}></CgProfile> Update Profile
                     </NavLink>
                   </li>
                 </>

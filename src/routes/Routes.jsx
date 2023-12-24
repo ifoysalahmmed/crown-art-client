@@ -19,6 +19,7 @@ import MySelectedClasses from "../pages/Dashboard/MySelectedClasses/MySelectedCl
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import UpdateProfile from "../pages/Dashboard/UpdateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +107,14 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/classes/${params.id}`),
+      },
+      {
+        path: "update-profile",
+        element: (
+          <InstructorRoute>
+            <UpdateProfile></UpdateProfile>
+          </InstructorRoute>
+        ),
       },
       {
         path: "selected-classes",

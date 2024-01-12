@@ -6,7 +6,6 @@ import { router } from "./routes/Routes";
 import AuthProvider from "./provider/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import "animate.css";
 import { HelmetProvider } from "react-helmet-async";
 
 // Create a client

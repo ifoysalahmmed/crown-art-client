@@ -12,7 +12,7 @@ const Main = () => {
       {/* className="min-h-[calc-(100vh-144px)]" */}
       <div>
         <Container>
-          <div className="pt-20">
+          <div className="pt-20 min-h-screen">
             <Outlet></Outlet>
           </div>
         </Container>

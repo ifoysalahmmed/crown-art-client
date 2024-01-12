@@ -65,40 +65,7 @@ const AddClass = () => {
       </Helmet>
       <div className="w-full px-6">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text font-semibold">Class Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Class Name"
-                {...register("name", { required: true })}
-                className="input input-bordered w-full"
-              />
-              {errors.name && (
-                <span className="text-red-600 py-2">
-                  Class Name is required
-                </span>
-              )}
-            </div>
-
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text font-semibold">Class Image</span>
-              </label>
-              <input
-                type="file"
-                {...register("image", { required: true })}
-                className="file-input file-input-bordered file-input-ghost w-full"
-              />
-              {errors.image && (
-                <span className="text-red-600 py-2">
-                  Class Image is required
-                </span>
-              )}
-            </div>
-
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text font-semibold">
@@ -133,6 +100,39 @@ const AddClass = () => {
 
             <div className="form-control w-full">
               <label className="label">
+                <span className="label-text font-semibold">Course Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Course Name"
+                {...register("name", { required: true })}
+                className="input input-bordered w-full"
+              />
+              {errors.name && (
+                <span className="text-red-600 py-2">
+                  Course Name is required
+                </span>
+              )}
+            </div>
+
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text font-semibold">Course Banner</span>
+              </label>
+              <input
+                type="file"
+                {...register("image", { required: true })}
+                className="file-input file-input-bordered file-input-ghost w-full"
+              />
+              {errors.image && (
+                <span className="text-red-600 py-2">
+                  Course Banner is required
+                </span>
+              )}
+            </div>
+
+            <div className="form-control w-full">
+              <label className="label">
                 <span className="label-text font-semibold">
                   Available Seats
                 </span>
@@ -152,24 +152,42 @@ const AddClass = () => {
 
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text font-semibold">Price</span>
+                <span className="label-text font-semibold">Course Fee</span>
               </label>
               <input
                 type="number"
-                placeholder="Price"
+                placeholder="Course Fee"
                 {...register("price", { required: true })}
                 className="input input-bordered w-full"
               />
               {errors.price && (
-                <span className="text-red-600 py-2">Price is required</span>
+                <span className="text-red-600 py-2">
+                  Course Fee is required
+                </span>
               )}
             </div>
+          </div>
+
+          <div className="form-control w-full mb-6">
+            <label className="label">
+              <span className="label-text font-semibold">Course Content</span>
+            </label>
+            <textarea
+              placeholder="Write something about your course..."
+              {...register("description", { required: true })}
+              className="textarea textarea-bordered textarea-md w-full h-40"
+            ></textarea>
+            {errors.description && (
+              <span className="text-red-600 py-2">
+                Course Content is required
+              </span>
+            )}
           </div>
 
           <div className="text-center">
             <input
               type="submit"
-              value="Add Class"
+              value="Add Course"
               className="btn btn-info bg-[#90c641e6] border-0 text-white"
             />
           </div>

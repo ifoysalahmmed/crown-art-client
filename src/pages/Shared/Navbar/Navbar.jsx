@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth/useAuth";
 import Avatar from "./Avatar";
+import logoImg from "../../../../public/king.png";
 import { toast } from "react-hot-toast";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
@@ -45,14 +46,14 @@ const Navbar = () => {
 
   const navOptions = (
     <>
-      <li className="font-semibold">
+      <li className="font-semibold uppercase">
         <NavLink to="/">Home</NavLink>
       </li>
-      <li className="font-semibold">
-        <NavLink to="/instructors">Instructors</NavLink>
+      <li className="font-semibold uppercase">
+        <NavLink to="/classes">Courses</NavLink>
       </li>
-      <li className="font-semibold">
-        <NavLink to="/classes">Classes</NavLink>
+      <li className="font-semibold uppercase">
+        <NavLink to="/instructors">Instructors</NavLink>
       </li>
     </>
   );
@@ -60,7 +61,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`navbar fixed z-10 bg-[#283333cc] xl:px-20 md:px-10 sm:px-2 px-4  ${
+        className={`navbar fixed z-10 bg-slate-500 xl:px-20 md:px-10 sm:px-2 px-4  ${
           theme === "light" ? "text-base-100" : "text-green-100"
         }`}
       >
@@ -87,7 +88,7 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#283333cc] rounded-box w-52"
             >
               {navOptions}
-              {user?.email && (
+              {/* {user?.email && (
                 <>
                   <li className="font-semibold">
                     <NavLink
@@ -103,17 +104,24 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                 </>
-              )}
+              )} */}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
-            Crown Art
+            <div className="flex items-center">
+              <img
+                src={logoImg}
+                alt="logo"
+                className="w-5 h-5 object-fill mr-1"
+              />
+              <span>Crown Art</span>
+            </div>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {navOptions}
-            {user?.email && (
+            {/* {user?.email && (
               <>
                 <li className="font-semibold">
                   <NavLink
@@ -129,7 +137,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               </>
-            )}
+            )} */}
           </ul>
         </div>
         <div className="navbar-end items-center">
@@ -141,7 +149,7 @@ const Navbar = () => {
             />
 
             <svg
-              className="swap-on fill-current w-7 h-7"
+              className="swap-on fill-current w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
@@ -149,38 +157,76 @@ const Navbar = () => {
             </svg>
 
             <svg
-              className="swap-off fill-current w-7 h-7"
+              className="swap-off fill-current w-5 h-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
               <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
             </svg>
           </label>
-          {!user?.email && (
-            <NavLink
-              className="btn btn-outline border-[#90c641e6] hover:btn-info text-[#90c641e6]"
-              to="/login"
-            >
-              <span className="">Login</span>
-            </NavLink>
-          )}
-          {user?.email && (
+
+          {user?.email ? (
             <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <Avatar></Avatar>
-              </label>
+              </label> */}
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <Avatar></Avatar>
+                </div>
+              </div>
+              {/* <ul
+                tabIndex={0}
+                className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-200 text-black rounded-box w-40 font-semibold"
+              > */}
               <ul
                 tabIndex={0}
-                className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-500 rounded-box w-40 font-semibold"
               >
-                <button
-                  onClick={handleLogOut}
-                  className="btn btn-outline bg-[#90c641e6] border-0 text-white hover:btn-warning"
-                >
-                  Logout
-                </button>
+                {isAdmin && (
+                  <li>
+                    <Link to={"/dashboard/manage-classes"}>Dashboard</Link>
+                  </li>
+                )}
+                {isInstructor && (
+                  <>
+                    <li>
+                      <Link to={"/instructor-profile"}>Profile</Link>
+                    </li>
+                    <li>
+                      <Link to={"/dashboard/add-class"}>Dashboard</Link>
+                    </li>
+                  </>
+                )}
+                {!isAdmin && !isInstructor && (
+                  <li>
+                    <Link to={"/dashboard/selected-classes"}>Dashboard</Link>
+                  </li>
+                )}
+                <li>
+                  <Link onClick={handleLogOut}>Logout</Link>
+                </li>
               </ul>
             </div>
+          ) : (
+            <>
+              <Link
+                className="btn bg-violet-700 hover:bg-violet-900 text-white font-medium border-0 btn-sm mr-2"
+                to="/sign-up"
+              >
+                Sign Up
+              </Link>
+              <Link
+                className="btn border-violet-700 bg-inherit hover:bg-violet-900 text-white font-medium btn-sm"
+                to="/login"
+              >
+                Sign In
+              </Link>
+            </>
           )}
         </div>
       </div>

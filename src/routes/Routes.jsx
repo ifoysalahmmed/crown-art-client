@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Home from "../pages/Home/Home/Home";
-import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
+import Instructors from "../pages/Instructors/Instructors";
+import InstructorProfile from "../pages/InstructorProfile/InstructorProfile";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
@@ -19,7 +20,6 @@ import MySelectedClasses from "../pages/Dashboard/MySelectedClasses/MySelectedCl
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import UpdateProfile from "../pages/Dashboard/UpdateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -32,12 +32,20 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: "/classes",
+        element: <Classes></Classes>,
+      },
+      {
         path: "/instructors",
         element: <Instructors></Instructors>,
       },
       {
-        path: "/classes",
-        element: <Classes></Classes>,
+        path: "instructor-profile",
+        element: (
+          <InstructorRoute>
+            <InstructorProfile></InstructorProfile>
+          </InstructorRoute>
+        ),
       },
       {
         path: "/login",
@@ -82,6 +90,7 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+
       {
         path: "add-class",
         element: (
@@ -108,14 +117,7 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/classes/${params.id}`),
       },
-      {
-        path: "update-profile",
-        element: (
-          <InstructorRoute>
-            <UpdateProfile></UpdateProfile>
-          </InstructorRoute>
-        ),
-      },
+
       {
         path: "selected-classes",
         element: <MySelectedClasses></MySelectedClasses>,

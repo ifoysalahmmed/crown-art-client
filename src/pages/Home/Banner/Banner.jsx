@@ -1,12 +1,9 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import { Autoplay, Pagination, Navigation } from "swiper";
-
 import slider01 from "../../../assets/slider/slider01.jpg";
 import slider02 from "../../../assets/slider/slider02.jpg";
 import slider03 from "../../../assets/slider/slider03.jpg";
@@ -21,7 +18,7 @@ const Banner = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 5000,
+          delay: 8000,
           disableOnInteraction: false,
         }}
         loop={true}

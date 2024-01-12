@@ -7,7 +7,6 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { GiClassicalKnowledge } from "react-icons/gi";
 import { MdClass } from "react-icons/md";
 import { FcPaid } from "react-icons/fc";
-import { CgProfile } from "react-icons/cg";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 import Footer from "../pages/Shared/Footer/Footer";
@@ -33,7 +32,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="menu p-4 w-60 h-full bg-[#90c641e6] text-base-content">
+            <ul className="menu p-4 w-60 h-full bg-[#90c641e6] text-base-content space-y-2">
               {isAdmin ? (
                 <>
                   <li>
@@ -75,14 +74,6 @@ const Dashboard = () => {
                     >
                       <SiGoogleclassroom size={20}></SiGoogleclassroom> My
                       Classes
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/dashboard/update-profile"
-                      className="text-white font-medium"
-                    >
-                      <CgProfile size={20}></CgProfile> Update Profile
                     </NavLink>
                   </li>
                 </>

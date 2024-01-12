@@ -57,49 +57,54 @@ const Classes = () => {
   return (
     <>
       <Helmet>
-        <title>Crown Art | Classes</title>
+        <title>Crown Art | Courses</title>
       </Helmet>
       <div className=" grid grid-cols-1 md:grid-cols-3 gap-6">
         {classes.map((classInfo) => (
           <div
             key={classInfo._id}
-            className={`card w-full h-96 text-white shadow-xl ${
-              classInfo.seats === 0 ? "bg-red-600" : "bg-[#90c641e6]"
+            className={`card card-compact w-full h-full px-7 shadow-xl ${
+              classInfo.seats === 0
+                ? "bg-red-400 hover:shadow-red-500 hover:shadow-2xl"
+                : "bg-purple-400 hover:shadow-purple-500 hover:shadow-2xl"
             }`}
           >
-            <figure className="h-full">
+            <figure className=" pt-10">
               <img
                 src={classInfo.image}
                 alt="Class Image"
-                className="w-full h-full"
+                className="w-80 h-52 object-fill rounded-xl"
               />
             </figure>
-            <div className="card-body">
+
+            <div className="my-3 space-y-2">
               <h2 className="card-title">{classInfo.name}</h2>
-              <p className="font-medium">
-                Instructor Name: {classInfo.instructor}
-              </p>
-              <p className="font-medium">Seats: {classInfo.seats}</p>
-              <p className="font-medium">Price: ${classInfo.price}</p>
-              <div className="card-actions justify-end">
+
+              <p className="font-medium">Instructor: {classInfo.instructor}</p>
+
+              <p className="font-medium">Available Seats: {classInfo.seats}</p>
+
+              <p className="font-medium">Tk. {classInfo.price}</p>
+
+              <div className="card-actions justify-center">
                 {classInfo.seats === 0 ? (
-                  <button className="btn btn-primary" disabled>
-                    <span className="text-white">Add Now</span>
+                  <button className="btn btn-sm" disabled>
+                    Add Now
                   </button>
                 ) : userInfo?.role === "admin" ? (
-                  <button className="btn btn-primary" disabled>
-                    <span className="text-white">Add Now</span>
+                  <button className="bt btn-sm" disabled>
+                    Add Now
                   </button>
                 ) : userInfo?.role === "instructor" ? (
-                  <button className="btn btn-primary" disabled>
-                    <span className="text-white">Add Now</span>
+                  <button className="btn btn-sm" disabled>
+                    Add Now
                   </button>
                 ) : (
                   <button
                     onClick={() => handleAddClass(classInfo)}
-                    className="btn btn-success"
+                    className="btn btn-sm bg-purple-600 hover:bg-rose-400 transition-all"
                   >
-                    <span className="text-white">Add Now</span>
+                    Add Now
                   </button>
                 )}
               </div>

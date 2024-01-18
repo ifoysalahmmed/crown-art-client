@@ -1,4 +1,3 @@
-import React from "react";
 import useAuth from "../hooks/useAuth/useAuth";
 import useInstructor from "../hooks/useInstructor";
 import { Navigate } from "react-router-dom";

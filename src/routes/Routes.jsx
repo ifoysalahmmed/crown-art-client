@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/classes",
+        path: "/courses",
         element: <Classes></Classes>,
       },
       {
@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: "manage-classes",
+        path: "manage-courses",
         element: (
           <AdminRoute>
             <ManageClasses></ManageClasses>
@@ -92,7 +92,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "add-class",
+        path: "add-course",
         element: (
           <InstructorRoute>
             <AddClass></AddClass>
@@ -100,7 +100,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "my-classes",
+        path: "my-courses",
         element: (
           <InstructorRoute>
             <MyClasses></MyClasses>
@@ -108,22 +108,22 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "update-class/:id",
+        path: "update-course/:id",
         element: (
           <InstructorRoute>
             <UpdateClass></UpdateClass>
           </InstructorRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/classes/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/courses/${params.id}`),
       },
 
       {
-        path: "selected-classes",
+        path: "selected-courses",
         element: <MySelectedClasses></MySelectedClasses>,
       },
       {
-        path: "enrolled-classes",
+        path: "enrolled-courses",
         element: <EnrolledClasses></EnrolledClasses>,
       },
       {

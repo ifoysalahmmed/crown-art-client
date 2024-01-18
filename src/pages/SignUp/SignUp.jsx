@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import signUpImg from "../../assets/signup/signup.png";
 import useAuth from "../../hooks/useAuth/useAuth";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { toast } from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-
-const img_hosting_token = import.meta.env.VITE_IMGBB_KEY;
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -17,17 +14,6 @@ const SignUp = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [confirmPassVisible, setConfirmPassVisible] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  const toggleConfirmPassVisibility = () => {
-    setConfirmPassVisible(!confirmPassVisible);
-  };
 
   const {
     register,
@@ -38,10 +24,8 @@ const SignUp = () => {
 
   const [passError, setPassError] = useState(false);
 
-  const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
-
   const onSubmit = (data) => {
-    const { name, email, password, confirmPassword, photo } = data || {};
+    const { name, email, password, confirmPassword } = data || {};
 
     if (password !== confirmPassword) {
       setPassError(true);
@@ -50,45 +34,33 @@ const SignUp = () => {
 
     setPassError(false);
 
-    const formData = new FormData();
-    formData.append("image", photo[0]);
-
-    fetch(img_hosting_url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imageResponse) => {
-        const photoUrl = imageResponse.data.display_url;
-
-        createUser(email, password)
+    createUser(email, password)
+      .then(() => {
+        updateUserProfile(name)
           .then(() => {
-            updateUserProfile(name, photoUrl)
-              .then(() => {
-                const saveUser = { name, email, image: photoUrl };
-                fetch(`${import.meta.env.VITE_API_URL}/users`, {
-                  method: "POST",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify(saveUser),
-                })
-                  .then((res) => res.json())
-                  .then((data) => {
-                    if (data.insertedId) {
-                      reset();
-                      toast.success("User created successfully");
-                      navigate(from, { replace: true });
-                    }
-                  });
-              })
-              .catch((error) => {
-                toast.error(error.message);
+            const saveUser = { name, email };
+            fetch(`${import.meta.env.VITE_API_URL}/users`, {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  toast.success("User created successfully");
+                  navigate(from, { replace: true });
+                }
               });
           })
           .catch((error) => {
             toast.error(error.message);
           });
+      })
+      .catch((error) => {
+        toast.error(error.message);
       });
   };
 
@@ -142,28 +114,20 @@ const SignUp = () => {
                   <label className="label">
                     <span className="label-text font-medium">Password</span>
                   </label>
-                  <div className="relative">
-                    <input
-                      type={passwordVisible ? "text" : "password"}
-                      placeholder="Password"
-                      {...register("password", {
-                        required: true,
-                        minLength: 6,
-                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
-                      })}
-                      className="input input-bordered w-full"
-                    />
-                    <label
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
-                      onClick={togglePasswordVisibility}
-                    >
-                      {passwordVisible ? (
-                        <RiEyeOffFill size={20}></RiEyeOffFill>
-                      ) : (
-                        <RiEyeFill size={20}></RiEyeFill>
-                      )}
-                    </label>
-                  </div>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    {...register("password", {
+                      required: true,
+                      minLength: 6,
+                      pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
+                    })}
+                    className="input input-bordered w-full"
+                  />
+                  <span className="text-xs px-1 text-black py-0.5">
+                    Password must be at least 6 characters long and must have at
+                    least one uppercase letter and one special character
+                  </span>
                   {errors.password?.type === "required" && (
                     <span className="text-red-600 py-2">
                       Password is required
@@ -187,47 +151,16 @@ const SignUp = () => {
                       Confirm Password
                     </span>
                   </label>
-                  <div className="relative">
-                    <input
-                      type={confirmPassVisible ? "text" : "password"}
-                      placeholder="Confirm Password"
-                      {...register("confirmPassword", {
-                        required: true,
-                        minLength: 6,
-                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
-                      })}
-                      className="input input-bordered w-full"
-                    />
-                    <label
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
-                      onClick={toggleConfirmPassVisibility}
-                    >
-                      {confirmPassVisible ? (
-                        <RiEyeOffFill size={20}></RiEyeOffFill>
-                      ) : (
-                        <RiEyeFill size={20}></RiEyeFill>
-                      )}
-                    </label>
-                  </div>
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    {...register("confirmPassword", { required: true })}
+                    className="input input-bordered w-full"
+                  />
                   {passError && (
                     <span className="text-red-600 py-2">
                       Password doesn&apos;t match
                     </span>
-                  )}
-                </div>
-
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text font-medium">Upload Photo</span>
-                  </label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    {...register("photo", { required: true })}
-                    className="file-input file-input-bordered file-input-ghost w-full"
-                  />
-                  {errors.photo && (
-                    <span className="text-red-600 py-2">Photo is required</span>
                   )}
                 </div>
 

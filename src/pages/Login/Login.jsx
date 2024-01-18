@@ -1,7 +1,5 @@
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import loginImg from "../../assets/login/login.png";
 import useAuth from "../../hooks/useAuth/useAuth";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
@@ -15,12 +13,6 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
 
   const {
     register,
@@ -78,7 +70,7 @@ const Login = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type={passwordVisible ? "text" : "password"}
+                      type="password"
                       placeholder="Password"
                       {...register("password", {
                         required: true,
@@ -87,16 +79,6 @@ const Login = () => {
                       })}
                       className="input input-bordered w-full"
                     />
-                    <label
-                      className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent border-none cursor-pointer"
-                      onClick={togglePasswordVisibility}
-                    >
-                      {passwordVisible ? (
-                        <RiEyeOffFill size={20}></RiEyeOffFill>
-                      ) : (
-                        <RiEyeFill size={20}></RiEyeFill>
-                      )}
-                    </label>
                   </div>
                   {errors.password?.type === "required" && (
                     <span className="text-red-600 py-2">

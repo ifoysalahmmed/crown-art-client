@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -81,13 +81,13 @@ const CheckoutForm = ({ bookingInfo }) => {
         date: new Date(),
         bookedItemId: _id,
         bookingItemId: bookingItemId,
-        className: name,
+        courseName: name,
       };
 
       axiosSecure.post("/payments", payment).then((res) => {
         console.log(res.data);
         if (res.data.insertResult.insertedId) {
-          navigate("/dashboard/enrolled-classes");
+          navigate("/dashboard/enrolled-courses");
         }
       });
     }

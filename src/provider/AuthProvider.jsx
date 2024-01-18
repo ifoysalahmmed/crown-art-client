@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -32,10 +32,9 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserProfile = (name, photo) => {
+  const updateUserProfile = (name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
     });
   };
 

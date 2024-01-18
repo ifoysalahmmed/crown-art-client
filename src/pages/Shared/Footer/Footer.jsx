@@ -1,14 +1,15 @@
-import React from "react";
+import moment from "moment";
 import Container from "../Container/Container";
+import logoImg from "../../../assets/logo/king.png";
 
 const Footer = () => {
   return (
-    <div className="bg-[#283333cc]">
+    <div className="bg-slate-800">
       <Container>
         <footer className="px-5 pt-10 pb-4 rounded-md mt-12 text-base-content">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:place-items-start">
             <div className="flex flex-col justify-center items-center md:mr-12">
-              <img src="/king.png" alt="" className="w-12" />
+              <img src={logoImg} alt="" className="w-12" />
               <p className="text-2xl font-bold text-white mb-2">Crown Art</p>
               <h3 className="text-white text-center font-semibold">
                 The best online art school taught by the top artists in the
@@ -75,7 +76,8 @@ const Footer = () => {
             </div>
           </div>
           <p className="font-semibold text-gray-300 text-xs text-center mt-6">
-            Copyright © 2023 - All right reserved by Crown Art
+            Copyright © {moment().format("YYYY")} - All right reserved by Crown
+            Art
           </p>
         </footer>
       </Container>

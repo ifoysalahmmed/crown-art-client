@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth/useAuth";
 import Avatar from "./Avatar";
-import logoImg from "../../../../public/king.png";
+import logoImg from "../../../assets/logo/king.png";
 import { toast } from "react-hot-toast";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
@@ -50,7 +50,7 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li className="font-semibold uppercase">
-        <NavLink to="/classes">Courses</NavLink>
+        <NavLink to="/courses">Courses</NavLink>
       </li>
       <li className="font-semibold uppercase">
         <NavLink to="/instructors">Instructors</NavLink>
@@ -88,23 +88,6 @@ const Navbar = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#283333cc] rounded-box w-52"
             >
               {navOptions}
-              {/* {user?.email && (
-                <>
-                  <li className="font-semibold">
-                    <NavLink
-                      to={
-                        isAdmin
-                          ? "/dashboard/manage-classes"
-                          : isInstructor
-                          ? "/dashboard/add-class"
-                          : "/dashboard/selected-classes"
-                      }
-                    >
-                      Dashboard
-                    </NavLink>
-                  </li>
-                </>
-              )} */}
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost normal-case text-xl">
@@ -119,26 +102,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {navOptions}
-            {/* {user?.email && (
-              <>
-                <li className="font-semibold">
-                  <NavLink
-                    to={
-                      isAdmin
-                        ? "/dashboard/manage-classes"
-                        : isInstructor
-                        ? "/dashboard/add-class"
-                        : "/dashboard/selected-classes"
-                    }
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-              </>
-            )} */}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navOptions}</ul>
         </div>
         <div className="navbar-end items-center">
           <label className="swap swap-rotate mr-6">
@@ -167,9 +131,6 @@ const Navbar = () => {
 
           {user?.email ? (
             <div className="dropdown dropdown-end">
-              {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <Avatar></Avatar>
-              </label> */}
               <div
                 tabIndex={0}
                 role="button"
@@ -179,17 +140,14 @@ const Navbar = () => {
                   <Avatar></Avatar>
                 </div>
               </div>
-              {/* <ul
-                tabIndex={0}
-                className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-200 text-black rounded-box w-40 font-semibold"
-              > */}
+
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-slate-500 rounded-box w-40 font-semibold"
               >
                 {isAdmin && (
                   <li>
-                    <Link to={"/dashboard/manage-classes"}>Dashboard</Link>
+                    <Link to={"/dashboard/manage-users"}>Dashboard</Link>
                   </li>
                 )}
                 {isInstructor && (
@@ -198,17 +156,19 @@ const Navbar = () => {
                       <Link to={"/instructor-profile"}>Profile</Link>
                     </li>
                     <li>
-                      <Link to={"/dashboard/add-class"}>Dashboard</Link>
+                      <Link to={"/dashboard/my-courses"}>Dashboard</Link>
                     </li>
                   </>
                 )}
                 {!isAdmin && !isInstructor && (
                   <li>
-                    <Link to={"/dashboard/selected-classes"}>Dashboard</Link>
+                    <Link to={"/dashboard/selected-courses"}>Dashboard</Link>
                   </li>
                 )}
                 <li>
-                  <Link onClick={handleLogOut}>Logout</Link>
+                  <Link onClick={handleLogOut} className="text-red-400">
+                    Sign Out
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -221,7 +181,7 @@ const Navbar = () => {
                 Sign Up
               </Link>
               <Link
-                className="btn border-violet-700 bg-inherit hover:bg-violet-900 text-white font-medium btn-sm"
+                className="btn border-violet-700 hover:border-violet-700 bg-inherit hover:bg-violet-900 text-white font-medium btn-sm"
                 to="/login"
               >
                 Sign In

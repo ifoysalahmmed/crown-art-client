@@ -1,16 +1,17 @@
-import React from "react";
+import { useState } from "react";
 import useAuth from "../../hooks/useAuth/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Avatar from "../Shared/Navbar/Avatar";
 import { Helmet } from "react-helmet-async";
+import EditInstructorProfile from "./EditInstructorProfile";
 
 const InstructorProfile = () => {
   const { user } = useAuth();
 
   const [axiosSecure] = useAxiosSecure();
 
-  const { data: instructors = [] } = useQuery({
+  const { data: instructors = [], refetch } = useQuery({
     queryKey: ["instructors"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users/instructors");
@@ -33,32 +34,46 @@ const InstructorProfile = () => {
     teachingArea,
   } = userInfo || {};
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [instructorInfo, setInstructorInfo] = useState({});
+
+  const handleModal = (data) => {
+    setInstructorInfo(data);
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       <Helmet>
         <title>Crown Art | Profile</title>
       </Helmet>
-      <div className="mx-40 mt-5 p-5 border-2 border-slate-300 rounded">
-        <h2 className="text-xl font-bold mb-3">Your Profile</h2>
-        <div className="grid grid-cols-1 justify-center">
-          <div className="mt-5 avatar">
-            <div className="w-40 rounded-full">
-              {image ? (
-                <img src={image} alt="" className="w-full object-cover" />
-              ) : (
-                <Avatar></Avatar>
-              )}
-            </div>
-          </div>
+      <EditInstructorProfile
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        instructorInfo={instructorInfo}
+        refetch={refetch}
+      ></EditInstructorProfile>
 
-          <div className="mt-5 space-y-2">
-            <h1 className="text-xl font-bold">
-              {name}{" "}
-              <span className=" badge badge-primary capitalize">{role}</span>
-            </h1>
+      <div className="w-9/12 mx-auto relative mt-16 p-5 border-2 border-slate-300 rounded">
+        <div className="my-5 flex justify-between">
+          <div className="space-y-2">
+            <div className="flex gap-2 items-center">
+              <h1 className="text-xl font-bold">{name}</h1>
+              <p className="badge badge-ghost capitalize font-semibold">
+                {role}
+              </p>
+            </div>
             <h2>
-              Signed up using Email <span className=" font-bold">{email}</span>
+              Signed up using Email <span className="font-bold">{email}</span>
             </h2>
+          </div>
+          <div>
+            <button
+              onClick={() => handleModal(userInfo)}
+              className="btn btn-outline btn-secondary btn-xs"
+            >
+              Edit Profile
+            </button>
           </div>
         </div>
 
@@ -90,10 +105,14 @@ const InstructorProfile = () => {
             )}
           </div>
         </div>
-        <div className="flex justify-end">
-          <button className="btn btn-outline btn-secondary btn-xs">
-            Edit Profile
-          </button>
+      </div>
+      <div className="avatar absolute top-20 left-[607.5px]">
+        <div className="w-32 rounded-full">
+          {image ? (
+            <img src={image} alt="" className="w-full object-fill" />
+          ) : (
+            <Avatar></Avatar>
+          )}
         </div>
       </div>
     </>

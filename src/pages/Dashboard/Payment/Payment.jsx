@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { loadStripe } from "@stripe/stripe-js";
@@ -16,7 +16,7 @@ const Payment = () => {
   const [bookingInfo, setBookingInfo] = useState({});
 
   useEffect(() => {
-    axiosSecure.get(`/classBookings/${id}`).then((res) => {
+    axiosSecure.get(`/courseBookings/${id}`).then((res) => {
       setBookingInfo(res.data);
     });
   }, [axiosSecure, id]);

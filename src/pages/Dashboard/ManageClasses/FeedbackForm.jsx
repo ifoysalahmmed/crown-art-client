@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -20,11 +19,11 @@ const FeedbackForm = () => {
 
   const onSubmit = (data) => {
     axiosSecure
-      .put(`${import.meta.env.VITE_API_URL}/classes/admin/feedback/${id}`, data)
+      .put(`${import.meta.env.VITE_API_URL}/courses/admin/feedback/${id}`, data)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
-          toast.success("Your feedback is submitted!");
-          navigate("/dashboard/manage-classes");
+          toast.success("Feedback is submitted!");
+          navigate("/dashboard/manage-courses");
         }
       });
   };
@@ -41,7 +40,7 @@ const FeedbackForm = () => {
               <span className="label-text font-semibold">Feedback</span>
             </label>
             <textarea
-              placeholder="Write your reason for approving or denying the class..."
+              placeholder="Write your reason for denying the course..."
               {...register("feedback", { required: true })}
               className="textarea textarea-bordered h-48"
             ></textarea>
@@ -55,7 +54,7 @@ const FeedbackForm = () => {
           <input
             type="submit"
             value="Submit Feedback"
-            className="btn btn-info btn-block bg-[#90c641e6] border-0 text-white mt-4"
+            className="btn btn-info btn-block bg-green-400 border-0 text-white mt-4"
           />
         </form>
       </div>

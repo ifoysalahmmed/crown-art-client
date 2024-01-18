@@ -1,4 +1,3 @@
-import React from "react";
 import useAuth from "../../../hooks/useAuth/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -10,10 +9,10 @@ const EnrolledClasses = () => {
 
   const [axiosSecure] = useAxiosSecure();
 
-  const { data: classes = [] } = useQuery({
-    queryKey: ["enrolledClasses"],
+  const { data: courses = [] } = useQuery({
+    queryKey: ["enrolledCourses"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/enrolledClasses/${user?.email}`);
+      const res = await axiosSecure.get(`/enrolledCourses/${user?.email}`);
       return res.data;
     },
   });
@@ -21,32 +20,33 @@ const EnrolledClasses = () => {
   return (
     <>
       <Helmet>
-        <title>Crown Art | Enrolled Classes</title>
+        <title>Crown Art | Enrolled Courses</title>
       </Helmet>
       <div className="w-full px-6">
-        {classes && Array.isArray(classes) && classes.length > 0 ? (
+        {courses && Array.isArray(courses) && courses.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="table w-full text-center">
-              <thead className="bg-[#90c641e6]">
+              <thead className="bg-green-300">
                 <tr className="text-white capitalize">
-                  <th></th>
                   <th>Name</th>
-                  <th>Price</th>
+                  <th>Course Fee</th>
                   <th>Date</th>
                   <th>Transaction Id</th>
                 </tr>
               </thead>
               <tbody>
-                {classes &&
-                  classes.map((cls, idx) => (
-                    <tr key={cls._id}>
-                      <th>{idx + 1}</th>
+                {courses &&
+                  courses.map((course) => (
+                    <tr key={course._id}>
                       <td>
-                        <div className="font-bold">{cls?.className}</div>
+                        <div className="font-bold">{course?.courseName}</div>
                       </td>
-                      <td>${cls?.price}</td>
-                      <td>{new Date(cls?.date).toDateString()}</td>
-                      <td>{cls?.transactionId}</td>
+
+                      <td>Tk. {course?.price}</td>
+
+                      <td>{new Date(course?.date).toDateString()}</td>
+
+                      <td>{course?.transactionId}</td>
                     </tr>
                   ))}
               </tbody>
@@ -54,9 +54,9 @@ const EnrolledClasses = () => {
           </div>
         ) : (
           <EmptyInfo
-            message={"You didn't enrolled any class. Pay first!"}
-            address={"/dashboard/selected-classes"}
-            label={"pay"}
+            message={"You didn't enrolled in any course. Enroll first!"}
+            address={"/dashboard/selected-courses"}
+            label={"Pay for Selected Courses"}
           ></EmptyInfo>
         )}
       </div>

@@ -1,15 +1,18 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import errorImg from "../../assets/error/error_bg.png";
 
 const ErrorPage = () => {
+  const backgroundImageStyle = {
+    backgroundImage: `url(${errorImg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
     <div>
       <div
-        className="h-[100vh] bg-cover bg-center flex flex-wrap justify-center items-center"
-        style={{
-          backgroundImage:
-            "url('https://cdn.schoolism.com/storage/assets/images/error_bg.png') ",
-        }}
+        className="h-[100vh] flex flex-wrap justify-center items-center"
+        style={backgroundImageStyle}
       >
         <div className="self-center text-center uppercase p-5 space-y-6">
           <h1 className="text-base-100 text-9xl">404</h1>
